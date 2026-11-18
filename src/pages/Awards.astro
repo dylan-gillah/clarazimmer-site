@@ -1,0 +1,57 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { rv, line } from '../lib/reveal';
+import { lines } from '../lib/inline';
+
+const page = (await getEntry('awards', 'awards'))!.data;
+const site = (await getEntry('site', 'site'))!.data;
+---
+<Base title={`Awards | ${site.site_name}`} current="Awards">
+  <div class="page">
+    <div class="container">
+      <div class="head" {...rv({ y: 30, dur: 0.9, ease: 'expo' })}>
+        <p class="eyebrow head-eyebrow">{page.eyebrow}</p>
+        <h1 set:html={lines(page.heading)} />
+      </div>
+      <div class="divider" {...line()}></div>
+      {page.awards.map((a, i) => (
+        <div {...rv({ on: 'view', y: 20, dur: 0.7, delay: i * 0.06, margin: -40 })}>
+          <div class="award">
+            <span class="year">{a.year}</span>
+            <div class="body">
+              <h3>{a.title}</h3>
+              <div class="meta">
+                <span class="festival">{a.festival}</span>
+                {a.film && <><span class="dash">—</span><span class="film">{a.film}</span></>}
+              </div>
+            </div>
+            <span class:list={['type', { winner: a.type === 'Winner', finalist: a.type === 'Finalist' }]}>{a.type}</span>
+          </div>
+        </div>
+      ))}
+      {page.footnote && <p class="footnote" {...rv({ on: 'view', dur: 0.8 })}>{page.footnote}</p>}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .head{margin-bottom:6rem}
+  .head-eyebrow{margin:0 0 1.25rem}
+  h1{font-family:var(--font-serif);font-size:clamp(2.5rem,8vw,8rem);color:#fff;font-weight:400;line-height:.87;letter-spacing:-.02em;margin:0;max-width:100%}
+  .divider{height:1px;background:rgba(255,255,255,.1);margin-bottom:0}
+  .award{padding:clamp(1.25rem,4vw,2rem) 0;border-bottom:1px solid rgba(255,255,255,.06);display:flex;flex-direction:row;gap:2rem;align-items:baseline;transition:background .3s ease;cursor:default}
+  .year{font-family:var(--font-sans);font-size:clamp(.6rem,1.5vw,.68rem);letter-spacing:.1em;color:rgba(255,255,255,.55);font-weight:300;flex-shrink:0}
+  .body{flex:1;min-width:0}
+  h3{font-family:var(--font-serif);font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,.88);font-weight:400;margin:0 0 .4rem;transition:color .3s ease;letter-spacing:.01em}
+  .award:hover h3{color:#fff}
+  .meta{display:flex;gap:.75rem;flex-wrap:wrap;align-items:baseline}
+  .festival{font-family:var(--font-sans);font-size:clamp(.65rem,2vw,.68rem);letter-spacing:.08em;color:rgba(255,255,255,.65);font-weight:300}
+  .dash{color:rgba(255,255,255,.12);font-size:.6rem}
+  .film{font-family:var(--font-sans);font-size:.68rem;letter-spacing:.06em;color:rgba(255,255,255,.55);font-weight:300;font-style:italic}
+  .type{font-family:var(--font-sans);font-size:clamp(.55rem,1.5vw,.58rem);letter-spacing:.25em;text-transform:uppercase;font-weight:300;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.15);padding:.3rem .6rem;white-space:nowrap;flex-shrink:0}
+  .type.winner{color:var(--gold);border-color:rgba(201,169,110,.35)}
+  .type.finalist{color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.2)}
+  .footnote{font-family:var(--font-sans);font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.4);text-align:center;font-weight:300;margin-top:4rem;text-transform:uppercase}
+  @media (max-width:767px){.award{flex-direction:column;gap:.75rem;align-items:flex-start}}
+</style>

@@ -1,0 +1,103 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { rv, line } from '../lib/reveal';
+import { lines } from '../lib/inline';
+
+const page = (await getEntry('credits', 'credits'))!.data;
+const site = (await getEntry('site', 'site'))!.data;
+
+// Colour of each short role badge (part of the design, not content).
+const BADGE_COLOR: Record<string, string> = {
+  DoP: 'var(--gold)',
+  Director: '#a78bfa',
+  'Camera Op.': 'rgba(255,255,255,0.55)',
+  '1st AC': 'rgba(255,255,255,0.45)',
+  'A-Cam': 'rgba(255,255,255,0.55)',
+  'B-Cam': 'rgba(255,255,255,0.45)',
+  'B-Cam / A-Cam': 'rgba(255,255,255,0.45)',
+  Camera: 'rgba(255,255,255,0.45)',
+  'Camera Dept.': 'rgba(255,255,255,0.35)',
+  Editor: 'rgba(255,255,255,0.4)',
+  'Camera Trainee': 'rgba(255,255,255,0.3)',
+  'Post Production': 'rgba(255,255,255,0.3)',
+};
+const KEY = [
+  { label: 'DoP', color: 'var(--gold)' },
+  { label: 'Director', color: '#a78bfa' },
+  { label: 'A/B-Cam', color: 'rgba(255,255,255,0.55)' },
+  { label: '1st AC', color: 'rgba(255,255,255,0.45)' },
+  { label: 'Camera Dept.', color: 'rgba(255,255,255,0.55)' },
+  { label: 'Editor / Post', color: 'rgba(255,255,255,0.5)' },
+];
+
+// Group by year, newest first; within a year keep the order from the CMS.
+const years = [...new Set(page.credits.map((c) => c.year))].sort((a, b) => Number(b) - Number(a));
+const groups = years.map((year) => ({ year, entries: page.credits.filter((c) => c.year === year) }));
+---
+<Base title={`Credits | ${site.site_name}`} current="Credits">
+  <div class="page">
+    <div class="wrap">
+      <div class="head" {...rv({ y: 30, dur: 0.9, ease: 'expo' })}>
+        <p class="eyebrow head-eyebrow">{page.eyebrow}</p>
+        <h1 set:html={lines(page.heading)} />
+      </div>
+      <div class="divider" {...line()}></div>
+      <div class="key" {...rv({ dur: 0.8, delay: 0.5 })}>
+        <span class="key-title">Role key:</span>
+        {KEY.map((k) => (
+          <span class="key-item" style={`--c:${k.color}`}><span class="dot"></span><span class="key-label">{k.label}</span></span>
+        ))}
+      </div>
+      {groups.map((g) => (
+        <div class="year-group" {...rv({ on: 'view', y: 20, dur: 0.7, ease: 'expo', margin: -60 })}>
+          <div class="year-head"><span class="year">{g.year}</span><div class="year-rule"></div></div>
+          <div>
+            {g.entries.map((e, i) => (
+              <div class="credit-row" {...rv({ on: 'view', y: 12, dur: 0.55, delay: i * 0.03, ease: 'expo', margin: -40 })}>
+                <div class="badge-cell"><span class="badge" style={`color:${BADGE_COLOR[e.badge] ?? 'rgba(255,255,255,0.4)'}`}>{e.badge}</span></div>
+                <div>
+                  <p class="title">{e.title}</p>
+                  {e.type && <p class="kind">{e.type}</p>}
+                  <p class="role">{e.role}</p>
+                  {(e.director || e.producer) && (
+                    <p class="people">
+                      {e.director && `Dir. ${e.director}`}{e.director && e.producer && ' · '}{e.producer && `Prod. ${e.producer}`}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .wrap{max-width:1000px;margin:0 auto;padding:0 3rem}
+  .head{margin-bottom:5rem}
+  .head-eyebrow{margin:0 0 1.25rem}
+  h1{font-family:var(--font-serif-alt);font-size:clamp(3.5rem,9vw,8rem);color:#fff;font-weight:400;line-height:.88;letter-spacing:-.02em;margin:0}
+  .divider{height:1px;background:rgba(255,255,255,.07);margin-bottom:4rem}
+  .key{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:4rem;align-items:center}
+  .key-title{font-family:var(--font-sans);font-size:.55rem;letter-spacing:.2em;color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:300}
+  .key-item{display:flex;align-items:center;gap:.5rem}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--c);display:inline-block}
+  .key-label{font-family:var(--font-sans);font-size:.58rem;letter-spacing:.18em;color:var(--c);text-transform:uppercase;font-weight:300}
+  .year-group{margin-bottom:4rem}
+  .year-head{display:flex;align-items:center;gap:1.5rem;margin-bottom:.5rem}
+  .year{font-family:var(--font-serif-alt);font-size:clamp(2.5rem,5vw,4rem);color:rgba(255,255,255,.35);font-weight:400;line-height:1;letter-spacing:-.02em}
+  .year-rule{flex:1;height:1px;background:rgba(255,255,255,.05)}
+  .credit-row{display:grid;grid-template-columns:110px 1fr auto;align-items:start;gap:1.5rem;padding:1.25rem 0;border-bottom:1px solid rgba(255,255,255,.05);transition:background .3s ease;background:transparent}
+  .credit-row:hover{background:rgba(255,255,255,.02)}
+  .badge-cell{padding-top:2px}
+  .badge{font-family:var(--font-sans);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;font-weight:400}
+  .title{font-family:var(--font-serif-alt);font-size:clamp(.95rem,1.8vw,1.15rem);color:rgba(255,255,255,.88);font-weight:400;margin:0 0 .2rem;letter-spacing:.01em;transition:color .3s ease}
+  .credit-row:hover .title{color:#fff}
+  .kind{font-family:var(--font-sans);font-size:.62rem;color:rgba(255,255,255,.55);font-weight:300;letter-spacing:.08em;margin:0 0 .55rem;font-style:italic}
+  .role{font-family:var(--font-sans);font-size:.65rem;color:rgba(255,255,255,.65);font-weight:300;letter-spacing:.06em;margin:0;line-height:1.7}
+  .people{font-family:var(--font-sans);font-size:.6rem;color:rgba(255,255,255,.55);font-weight:300;letter-spacing:.06em;margin:.3rem 0 0}
+  @media (max-width:640px){.credit-row{grid-template-columns:80px 1fr!important}}
+</style>

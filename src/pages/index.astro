@@ -1,0 +1,86 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import TextLink from '../components/TextLink.astro';
+import { rv, line } from '../lib/reveal';
+import { lines } from '../lib/inline';
+import { filmByRef, filmPath } from '../lib/films';
+
+const home = (await getEntry('home', 'home'))!.data;
+const stills = await Promise.all(
+  home.featured_stills.map(async (s) => ({ image: s.image, href: filmPath((await filmByRef(s.film)).id) })),
+);
+---
+<Base title={home.page_title} description={home.page_description} image={home.hero_image}>
+  <div class="home">
+    <section class="hero">
+      <Img path={home.hero_image} alt="" class="hero-img" loading="eager" fetchpriority="high" sizes="100vw" />
+      <div class="hero-shade"></div>
+      <div class="hero-line" {...line('--delay:1.2s;--dur:2.5s')}></div>
+      <div class="hero-content">
+        <p class="hero-eyebrow" {...rv({ y: 12, delay: 0.15, dur: 0.8 })}>{home.eyebrow}</p>
+        <h1 {...rv({ y: 60, dur: 1.2, ease: 'expo' })} set:html={lines(home.name)} />
+        <div class="hero-foot" {...rv({ dur: 0.9, delay: 0.8 })}>
+          <p>{home.intro}</p>
+          <TextLink href="/Work/">{home.hero_button}</TextLink>
+        </div>
+      </div>
+    </section>
+
+    <section class="selected">
+      <div {...rv({ on: 'view', y: 50, dur: 0.9, ease: 'expo', margin: -80 })}>
+        <div class="selected-head">
+          <h2>{home.selected_work_heading}</h2>
+          <a href="/Work/" class="all-work">{home.all_work_link}</a>
+        </div>
+        <div class="stills">
+          {stills.map((s, i) => (
+            <a href={s.href}>
+              <div class="still" {...rv({ on: 'view', y: 20, dur: 0.7, delay: i * 0.05, margin: -40 })}>
+                <Img path={s.image} alt={`Still ${i + 1}`} class="fit" sizes="(max-width: 700px) 100vw, 50vw" fetchpriority={i < 2 ? 'high' : 'low'} />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="teaser">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 teaser-grid" {...rv({ on: 'view', y: 30, dur: 0.9 })}>
+        <div><h2 set:html={lines(home.about_heading)} /></div>
+        <div>
+          <p set:html={lines(home.about_text)} />
+          <TextLink href="/About/">{home.about_link}</TextLink>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .home{background:#000;color:#fff}
+  .hero{min-height:100vh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 5rem}
+  .hero :global(.hero-img){position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;pointer-events:none}
+  .hero-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.55) 50%,rgba(0,0,0,.45) 100%);pointer-events:none}
+  .hero-line{position:absolute;bottom:12%;left:0;right:0;height:1px;background:rgba(255,255,255,.04);pointer-events:none}
+  .hero-content{position:relative;z-index:1;max-width:1400px;width:100%}
+  .hero-eyebrow{font-family:var(--font-sans);font-size:.75rem;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;font-weight:300;margin:0 0 1.5rem}
+  h1{font-family:var(--font-serif);font-size:clamp(4.8rem,13vw,14rem);color:#fff;line-height:.87;letter-spacing:-.06em;font-weight:400;margin:0 0 2.5rem}
+  .hero-foot{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem}
+  .hero-foot p{font-family:var(--font-sans);font-size:.85rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.75;max-width:360px;margin:0;letter-spacing:.01em}
+
+  .selected{padding:8rem 3rem;max-width:1400px;margin:0 auto}
+  .selected-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:2rem}
+  h2{font-family:var(--font-serif);font-size:clamp(2rem,4.5vw,4rem);color:#fff;font-weight:400;margin:0;letter-spacing:.01em}
+  .all-work{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;font-weight:300;transition:color .3s ease;padding-bottom:.5rem}
+  .stills{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .stills a{text-decoration:none}
+  .still{position:relative;padding-bottom:calc(100% / 2.35);background:#080808;overflow:hidden;cursor:pointer}
+
+  .teaser{padding:0 3rem 10rem;max-width:1400px;margin:0 auto}
+  .teaser-grid{border-top:1px solid rgba(255,255,255,.05);padding-top:4rem}
+  .teaser h2{line-height:1.05;letter-spacing:normal}
+  .teaser p{font-family:var(--font-sans);font-size:.9rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.9;margin:0 0 2.5rem;letter-spacing:.01em}
+  @media (max-width:700px){.stills{grid-template-columns:1fr}}
+</style>

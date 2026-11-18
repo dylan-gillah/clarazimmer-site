@@ -1,0 +1,19 @@
+{
+  "name": "clarazimmer-site",
+  "type": "module",
+  "private": true,
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "check:media": "node scripts/check-media.mjs",
+    "build": "node scripts/check-media.mjs && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.4.7",
+    "sharp": "0.35.5"
+  }
+}

@@ -1,0 +1,42 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import { rv } from '../lib/reveal';
+import { lines } from '../lib/inline';
+
+const page = (await getEntry('photography', 'photography'))!.data;
+const site = (await getEntry('site', 'site'))!.data;
+---
+<Base title={`Photography | ${site.site_name}`} current="Photography">
+  <div class="page photo-page">
+    <div class="container">
+      <div class="head" {...rv({ y: 30, dur: 0.9, ease: 'expo' })}>
+        <p class="eyebrow head-eyebrow">{page.eyebrow}</p>
+        <h1 set:html={lines(page.heading)} />
+      </div>
+      {page.sections.map((s, si) => (
+        <div class:list={['section', { later: si > 0 }]} {...rv({ on: 'view', y: 20, dur: 0.8 })}>
+          <p class="label section-label">{s.heading}</p>
+          <div class="masonry">
+            {s.photos.map((p, i) => (
+              <Img path={p} alt={`${s.heading} photograph ${i + 1}`} class="masonry-photo" sizes="(max-width: 700px) 100vw, 520px" {...rv({ on: 'view', y: 24, dur: 0.7, delay: (i % 2) * 0.08, margin: -40 })} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .photo-page{padding-top:10rem}
+  .head{margin-bottom:5rem}
+  .head-eyebrow{margin:0 0 1rem}
+  h1{font-family:var(--font-serif-alt);font-size:clamp(2.2rem,8vw,8rem);color:#fff;font-weight:400;line-height:.92;letter-spacing:-.02em;margin:0}
+  .section.later{margin-top:6rem}
+  .section-label{margin-bottom:1.75rem}
+  .masonry{column-count:2;column-gap:1.5rem}
+  .masonry :global(.masonry-photo){width:100%;height:auto;display:block;margin-bottom:1.5rem;break-inside:avoid;-webkit-column-break-inside:avoid}
+  @media (max-width:700px){.masonry{column-count:1;column-gap:0}}
+</style>

@@ -1,0 +1,87 @@
+{
+  "title": "Runaways",
+  "display_title": "",
+  "year": "2023",
+  "category": "Short Film",
+  "order": 5,
+  "show_on_work_page": true,
+  "thumbnail": "/media/e717cc93a_Screenshot2026-03-10at131025.png",
+  "logline": "Two strangers on the edge of a city find themselves bound by a single night they can't escape.",
+  "video_platform": "vimeo",
+  "video_id": "935853065",
+  "video_private_code": "",
+  "video_shape": "16:9",
+  "video_params": "color=c9a96e&title=0&byline=0&portrait=0&dnt=1",
+  "hero_image": "",
+  "synopsis": "Runaways follows Maya and Eli — two people who have never met — as they collide in the hours before dawn in an unnamed city. What begins as a chance encounter unravels into something far more fragile and true. Shot on location over five nights, the film explores isolation, impulse, and the strange grace of being witnessed by a stranger.",
+  "credits": [
+    {
+      "label": "Director",
+      "value": "Tim Litwinschuh & Clara B. Zimmer"
+    },
+    {
+      "label": "Cinematographer",
+      "value": "Clara B. Zimmer"
+    },
+    {
+      "label": "Runtime",
+      "value": "14 min"
+    },
+    {
+      "label": "Format",
+      "value": "24FPS · 2K Scope"
+    }
+  ],
+  "details": [
+    {
+      "label": "Location",
+      "value": "Berlin"
+    },
+    {
+      "label": "Camera",
+      "value": "ARRI Alexa Mini"
+    },
+    {
+      "label": "Lenses",
+      "value": "Arri Ultra Primes"
+    },
+    {
+      "label": "Shoot Days",
+      "value": "72 hours"
+    },
+    {
+      "label": "Colour Grade",
+      "value": "DaVinci Resolve"
+    },
+    {
+      "label": "Aspect Ratio",
+      "value": "2K Scope"
+    }
+  ],
+  "stills": [],
+  "bts_photos": [
+    "/media/6594d1177_PHOTO-2023-05-06-12-41-36.jpg",
+    "/media/53161754d_PHOTO-2023-05-06-12-41-37.jpg",
+    "/media/baacc6f1e_PHOTO-2023-05-06-12-41-44.jpg",
+    "/media/b2611c21f_PHOTO-2023-05-06-12-42-26.jpg",
+    "/media/8847dca77_PHOTO-2023-05-06-15-22-19.jpg",
+    "/media/9e5a70053_PHOTO-2023-05-06-15-22-20.jpg",
+    "/media/002de04d6_PHOTO-2023-05-06-15-22-21.jpg",
+    "/media/b54703783_PHOTO-2023-05-06-15-22-211.jpg",
+    "/media/971d6bfa9_PHOTO-2023-05-06-19-02-07.jpg",
+    "/media/7a063fddd_PHOTO-2023-05-06-19-02-08.jpg",
+    "/media/2f8604272_PHOTO-2023-05-06-19-02-081.jpg",
+    "/media/058c695df_PHOTO-2023-05-06-19-02-09.jpg",
+    "/media/dfdc68694_PHOTO-2023-05-06-19-02-091.jpg",
+    "/media/8bee7ba7d_PHOTO-2023-05-06-20-38-18.jpg",
+    "/media/b9553d377_PHOTO-2023-05-06-20-38-20.jpg",
+    "/media/62b68e746_PHOTO-2023-05-12-11-56-18.jpg",
+    "/media/e5341afa4_PHOTO-2023-05-12-11-56-23.jpg",
+    "/media/235189ef6_PHOTO-2023-05-12-11-56-24.jpg",
+    "/media/06708d761_PHOTO-2023-05-12-11-56-241.jpg",
+    "/media/76d3ae965_PHOTO-2023-05-12-11-56-242.jpg",
+    "/media/dffc95c15_PHOTO-2023-05-12-11-57-34.jpg",
+    "/media/a19f4190b_PHOTO-2023-05-12-11-57-35.jpg",
+    "/media/b4fc6ce3e_PHOTO-2023-05-12-11-57-36.jpg"
+  ]
+}

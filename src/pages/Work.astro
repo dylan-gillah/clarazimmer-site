@@ -1,0 +1,81 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import { rv, line } from '../lib/reveal';
+import { lines } from '../lib/inline';
+import { allFilms, filmPath, videoPage } from '../lib/films';
+
+const page = (await getEntry('work', 'work'))!.data;
+const site = (await getEntry('site', 'site'))!.data;
+const films = (await allFilms()).filter((f) => f.data.show_on_work_page);
+---
+<Base title={`Work | ${site.site_name}`} current="Work">
+  <div class="page work-page">
+    <div class="wrap">
+      <div class="head" {...rv({ y: 30, dur: 0.9, ease: 'expo' })}>
+        <p class="eyebrow head-eyebrow">{page.eyebrow}</p>
+        <h1 set:html={lines(page.heading)} />
+      </div>
+      <div class="divider" {...line()}></div>
+      <div>
+        {films.map((f) => {
+          const href = filmPath(f.id);
+          const watch = videoPage(f.data);
+          return (
+            <div {...rv({ on: 'view', y: 50, dur: 0.9, ease: 'expo', margin: -80 })}>
+              <article class="card">
+                <div class="frame">
+                  <Img path={f.data.thumbnail} alt={f.data.title} class="fit frame-img" sizes="(max-width: 1300px) 100vw, 1204px" />
+                  {watch ? (
+                    <a class="overlay" href={watch} target="_blank" rel="noopener noreferrer"><span>Watch Now</span></a>
+                  ) : (
+                    <a class="overlay" href={href}><span>View Project</span></a>
+                  )}
+                </div>
+                <div class="meta">
+                  <div>
+                    <a href={href} class="title-link">
+                      <h3>
+                        {f.data.title}
+                        {f.data.year && <span class="year">({f.data.year})</span>}
+                      </h3>
+                    </a>
+                    {f.data.logline && <p class="logline">{f.data.logline}</p>}
+                  </div>
+                  <span class="category">{f.data.category}</span>
+                </div>
+              </article>
+            </div>
+          );
+        })}
+      </div>
+      {page.footnote && <p class="footnote" {...rv({ on: 'view', dur: 0.8 })}>{page.footnote}</p>}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .work-page{padding-bottom:6rem}
+  .wrap{max-width:1300px;margin:0 auto;padding:0 3rem}
+  .head{margin-bottom:5rem}
+  .head-eyebrow{margin:0 0 1.25rem}
+  h1{font-family:var(--font-serif);font-size:clamp(4rem,10vw,9rem);color:#fff;font-weight:400;line-height:.87;letter-spacing:-.02em;margin:0}
+  .divider{height:1px;background:rgba(255,255,255,.07);margin-bottom:5rem}
+  .card{margin-bottom:5.5rem}
+  .frame{position:relative;padding-top:56.25%;background:#080808;overflow:hidden;transform:scale(1);transition:transform .9s var(--ease-out-expo)}
+  .frame :global(.frame-img){transition:transform .9s var(--ease-out-expo);transform:scale(1)}
+  .frame:hover{transform:scale(1.007)}
+  .frame:hover :global(.frame-img){transform:scale(1.04)}
+  .overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0);transition:background .5s ease;text-decoration:none}
+  .overlay span{font-family:var(--font-sans);font-size:.7rem;letter-spacing:.32em;color:#fff;font-weight:300;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.7);padding-bottom:4px}
+  .frame:hover .overlay,.overlay:focus-visible{background:rgba(0,0,0,.45)}
+  .meta{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.07)}
+  .title-link{text-decoration:none;display:inline-block}
+  h3{font-family:var(--font-serif);font-size:clamp(1.1rem,2.5vw,1.9rem);color:#fff;font-weight:400;margin:0;letter-spacing:.01em;transition:color .3s ease}
+  .title-link:hover h3{color:var(--gold)}
+  .year{font-family:var(--font-sans);font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:.05em;margin-left:.75rem;font-weight:300;vertical-align:middle}
+  .logline{font-family:var(--font-sans);font-size:.72rem;color:rgba(255,255,255,.38);font-weight:300;letter-spacing:.04em;margin:.45rem 0 0;max-width:520px;line-height:1.65}
+  .category{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;font-weight:300;padding-top:.35rem}
+  .footnote{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.42em;color:#fff;text-align:center;font-weight:300;margin-top:2rem;text-transform:uppercase}
+</style>

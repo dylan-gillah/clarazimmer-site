@@ -1,0 +1,36 @@
+---
+// Not-found page. GitHub Pages serves it for any unknown address. Before showing it, a tiny
+// script checks whether the address is just a different spelling of a real page
+// (/ABOUT, /Film-Runaways …) and forwards there.
+import Base from '../layouts/Base.astro';
+import { getEntry } from 'astro:content';
+import { allFilms, filmSlug, STATIC_PAGES } from '../lib/films';
+
+const site = (await getEntry('site', 'site'))!.data;
+const routes = [...STATIC_PAGES, ...(await allFilms()).map((f) => filmSlug(f.id))];
+const map = Object.fromEntries(routes.map((r) => [r.toLowerCase(), `/${r}/`]));
+map.home = '/';
+---
+<Base title={`Page not found | ${site.site_name}`}>
+  <script is:inline define:vars={{ map }}>
+    var key = location.pathname.split('/').filter(Boolean).join('').replace(/-/g, '').toLowerCase();
+    if (map[key]) location.replace(map[key] + location.search + location.hash);
+  </script>
+  <div class="page notfound">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>Page not found</h1>
+      <p class="lead">This page doesn’t exist or has moved.</p>
+      <a href="/" class="home-link">Back to the home page</a>
+    </div>
+  </div>
+</Base>
+<style>
+  .notfound{display:flex;align-items:center}
+  .notfound .container{width:100%}
+  .eyebrow{margin:0 0 1.25rem}
+  h1{font-family:var(--font-serif);font-size:clamp(3rem,8vw,7rem);font-weight:400;line-height:.9;letter-spacing:-.02em;margin:0 0 2rem}
+  .lead{font-family:var(--font-sans);font-size:.95rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.9;margin:0 0 2.5rem}
+  .home-link{font-family:var(--font-sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;font-weight:300;color:rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:3px;transition:color .35s ease,border-color .35s ease}
+  .home-link:hover,.home-link:focus-visible{color:var(--gold);border-color:var(--gold)}
+</style>

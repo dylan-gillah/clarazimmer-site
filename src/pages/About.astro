@@ -1,0 +1,56 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import { rv } from '../lib/reveal';
+import { lines, paragraphs } from '../lib/inline';
+
+const about = (await getEntry('about', 'about'))!.data;
+---
+<Base title={about.page_title} description={about.page_description} image={about.share_image} current="About">
+  <div class="page about">
+    <div class="wrap">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+        <div {...rv({ x: -30, dur: 0.9, delay: 0.2, ease: 'expo' })}>
+          <div class="portrait">
+            <Img path={about.photo} alt={about.photo_description} class="fit portrait-img" sizes="(max-width: 767px) 100vw, 50vw" />
+            <div class="portrait-line"></div>
+          </div>
+          {about.caption && <p class="caption">{about.caption}</p>}
+        </div>
+        <div {...rv({ x: 30, dur: 0.9, delay: 0.3, ease: 'expo' })}>
+          <p class="eyebrow about-eyebrow">{about.eyebrow}</p>
+          <h1 set:html={lines(about.name)} />
+          <div class="bio">
+            {paragraphs(about.bio).map((p) => <p set:html={p} />)}
+          </div>
+          {about.specialisms.length > 0 && (
+            <div>
+              {about.specialisms_heading && <p class="spec-heading">{about.specialisms_heading}</p>}
+              <div class="specs">
+                {about.specialisms.map((s) => <span>{s}</span>)}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .wrap{max-width:1300px;margin:0 auto;padding:0 3rem}
+  .portrait{position:relative;padding-top:130%;overflow:hidden}
+  .portrait :global(.portrait-img){inset:0;object-position:center}
+  .portrait-line{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold)}
+  .caption{font-family:var(--font-sans);font-size:.6rem;letter-spacing:.28em;color:rgba(255,255,255,.45);text-transform:uppercase;margin-top:1rem;font-weight:300}
+  .about-eyebrow{margin:0 0 2rem}
+  h1{font-family:var(--font-serif);font-size:clamp(2.5rem,5vw,5rem);color:#fff;font-weight:400;line-height:.95;letter-spacing:-.01em;margin:0 0 2.5rem}
+  .bio{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:2rem}
+  .bio p{font-family:var(--font-sans);font-size:.9rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.9;margin:0;letter-spacing:.01em}
+  .bio p:nth-child(1){color:rgba(255,255,255,.65)}
+  .bio p:nth-child(2){color:rgba(255,255,255,.6)}
+  .spec-heading{font-family:var(--font-sans);font-size:.6rem;letter-spacing:.35em;color:rgba(255,255,255,.45);text-transform:uppercase;margin:0 0 1.25rem;font-weight:300}
+  .specs{display:flex;gap:.6rem;flex-wrap:wrap}
+  .specs span{font-family:var(--font-sans);font-size:.68rem;letter-spacing:.08em;color:rgba(255,255,255,.45);font-weight:300;border:1px solid rgba(255,255,255,.1);padding:.4rem .9rem;transition:border-color .3s ease,color .3s ease}
+</style>

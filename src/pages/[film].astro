@@ -1,0 +1,132 @@
+---
+// The one page template shared by every film (existing ones and any added later in the CMS).
+import type { GetStaticPaths } from 'astro';
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Img from '../components/Img.astro';
+import SpecGrid from '../components/SpecGrid.astro';
+import Gallery from '../components/Gallery.astro';
+import { rv } from '../lib/reveal';
+import { inline, lines } from '../lib/inline';
+import { allFilms, filmSlug, videoEmbed, type Film } from '../lib/films';
+
+export const getStaticPaths = (async () =>
+  (await allFilms()).map((film) => ({ params: { film: filmSlug(film.id) }, props: { film } }))) satisfies GetStaticPaths;
+
+const { film } = Astro.props as { film: Film };
+const f = film.data;
+const site = (await getEntry('site', 'site'))!.data;
+
+const heading = f.display_title.trim() || f.title;
+const longest = Math.max(...heading.split(/\r?\n/).map((l) => l.trim().length));
+const size = longest <= 12 ? 'clamp(2.2rem, 8vw, 8rem)' : longest <= 18 ? 'clamp(2.2rem, 8vw, 7rem)' : 'clamp(2rem, 6vw, 5rem)';
+const eyebrow = [f.category, f.year].filter(Boolean).join(' · ');
+const video = videoEmbed(f);
+const description = f.logline || f.synopsis.split(/(?<=\.)\s/)[0] || site.description;
+const sections = [
+  f.details.length && 'details',
+  f.stills.length && 'stills',
+  f.bts_photos.length && 'bts',
+].filter(Boolean) as string[];
+---
+<Base title={`${f.title} | ${site.site_name}`} description={description} image={f.thumbnail}>
+  <div class="page film">
+    <div class="container">
+      <div class="back" {...rv({ x: -16, dur: 0.6, ease: 'expo' })}>
+        <a href="/Work/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>
+          Selected Work
+        </a>
+      </div>
+      <div class="head" {...rv({ y: 30, dur: 0.9, ease: 'expo' })}>
+        {eyebrow && <p class="eyebrow film-eyebrow">{eyebrow}</p>}
+        <h1 style={`font-size:${size}`} class:list={{ 'has-logline': !!f.logline }} set:html={lines(heading)} />
+        {f.logline && <p class="logline">"<Fragment set:html={inline(f.logline)} />"</p>}
+      </div>
+    </div>
+
+    {video ? (
+      <div class="hero video" style={`padding-top:${video.padding}%`} {...rv({ y: 20, dur: 0.9, delay: 0.15, ease: 'expo' })}>
+        {f.video_platform === 'youtube' ? (
+          <iframe src={video.src} title={f.title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+        ) : (
+          <iframe src={video.src} title={f.title} allow="autoplay; fullscreen; picture-in-picture; clipboard-write" allowfullscreen></iframe>
+        )}
+      </div>
+    ) : f.hero_image ? (
+      <div class="hero still" {...rv({ y: 20, dur: 0.9, delay: 0.15, ease: 'expo' })}>
+        <Img path={f.hero_image} alt={f.title} class="fit" loading="eager" fetchpriority="high" sizes="100vw" />
+      </div>
+    ) : null}
+
+    <div class="container">
+      {f.synopsis ? (
+        <div class="credits-synopsis" {...rv({ on: 'view', y: 20, dur: 0.8, ease: 'expo' })}>
+          <div>
+            <p class="label block-label">Credits</p>
+            {f.credits.map((c) => (
+              <div class="credit"><p class="credit-label">{c.label}</p><p class="credit-value">{c.value}</p></div>
+            ))}
+          </div>
+          <div>
+            <p class="label block-label">Synopsis</p>
+            {f.synopsis.split(/\r?\n\s*\r?\n/).map((p) => <p class="synopsis" set:html={lines(p)} />)}
+          </div>
+        </div>
+      ) : f.credits.length > 0 ? (
+        <div {...rv({ on: 'view', y: 20, dur: 0.8, ease: 'expo' })}>
+          <p class="label spec-label">Credits</p>
+          <SpecGrid items={f.credits} />
+        </div>
+      ) : null}
+
+      {sections.map((s, i) => (
+        <>
+          {(i > 0 || f.synopsis || f.credits.length > 0) && <div class="rule section-rule"></div>}
+          {s === 'details' && (
+            <div {...rv({ on: 'view', y: 20, dur: 0.8 })}>
+              <p class="label spec-label">Behind the Lens</p>
+              <SpecGrid items={f.details} />
+            </div>
+          )}
+          {s === 'stills' && (
+            <div {...rv({ on: 'view', y: 20, dur: 0.8 })}>
+              <p class="label spec-label">Stills</p>
+              <Gallery photos={f.stills} alt={(n) => `${f.title} still ${n}`} columns={2} />
+            </div>
+          )}
+          {s === 'bts' && (
+            <div {...rv({ on: 'view', y: 20, dur: 0.8 })}>
+              <p class="label spec-label">Behind the Scenes</p>
+              <Gallery photos={f.bts_photos} alt={(n) => `${f.title} behind the scenes ${n}`} columns={3} aspect="3 / 2" />
+            </div>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</Base>
+
+<style>
+  .back{margin-bottom:3.5rem}
+  .back a{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--font-sans);font-size:.62rem;letter-spacing:.22em;color:rgba(255,255,255,.35);text-transform:uppercase;font-weight:300;transition:color .3s ease}
+  .back a:hover,.back a:focus-visible{color:var(--gold)}
+  .head{margin-bottom:4rem}
+  .film-eyebrow{margin:0 0 1rem}
+  h1{font-family:var(--font-serif-alt);color:#fff;font-weight:400;line-height:.9;letter-spacing:-.02em;margin:0}
+  h1.has-logline{margin-bottom:2rem}
+  .logline{font-family:var(--font-sans);font-size:1rem;font-weight:300;color:rgba(255,255,255,.55);letter-spacing:.02em;max-width:560px;line-height:1.75;font-style:italic}
+  .hero{position:relative;background:#080808;margin-bottom:5rem}
+  .hero.still{padding-bottom:40%;overflow:hidden}
+  .hero iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+  .credits-synopsis{display:grid;grid-template-columns:1fr 2fr;gap:4rem}
+  .block-label{margin-bottom:1.75rem}
+  .spec-label{margin-bottom:2rem}
+  .credit{margin-bottom:1rem}
+  .credit-label{font-family:var(--font-sans);font-size:.58rem;letter-spacing:.2em;color:rgba(255,255,255,.45);text-transform:uppercase;font-weight:300;margin:0 0 .2rem}
+  .credit-value{font-family:var(--font-sans);font-size:.82rem;color:rgba(255,255,255,.75);font-weight:300;margin:0;letter-spacing:.02em}
+  .synopsis{font-family:var(--font-sans);font-size:.92rem;font-weight:300;color:rgba(255,255,255,.6);line-height:1.9;letter-spacing:.02em;margin:0}
+  .synopsis + .synopsis{margin-top:1.2rem}
+  .section-rule{margin:4rem 0}
+  @media (max-width:700px){.credits-synopsis{grid-template-columns:1fr;gap:2.5rem}}
+</style>

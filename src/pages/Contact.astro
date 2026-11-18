@@ -1,0 +1,56 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { rv, line } from '../lib/reveal';
+import { lines } from '../lib/inline';
+
+const page = (await getEntry('contact', 'contact'))!.data;
+const site = (await getEntry('site', 'site'))!.data;
+const details = [
+  { label: 'Email', value: page.email, href: `mailto:${page.email}` },
+  { label: 'Phone', value: page.phone, href: '' },
+  { label: 'Based', value: page.based, href: '' },
+].filter((d) => d.value);
+---
+<Base title={`Contact | ${site.site_name}`} current="Contact">
+  <div class="contact">
+    <div class="wrap">
+      <div class="head" {...rv({ y: 30, dur: 0.9, ease: 'expo' })}>
+        <p class="eyebrow head-eyebrow">{page.eyebrow}</p>
+        <h1 set:html={lines(page.heading)} />
+      </div>
+      <div class="divider" {...line()}></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16" {...rv({ y: 20, dur: 0.8, delay: 0.4 })}>
+        <div>
+          {page.intro && <p class="intro">{page.intro}</p>}
+          {page.note && <p class="note">{page.note}</p>}
+        </div>
+        <div class="details">
+          {details.map((d) => (
+            <div>
+              <p class="detail-label">{d.label}</p>
+              {d.href ? <a href={d.href}>{d.value}</a> : <p class="detail-value">{d.value}</p>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .contact{min-height:100vh;background:#000;color:#fff;display:flex;align-items:center;padding-top:6rem;padding-bottom:clamp(3rem,8vw,6rem)}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 3rem;width:100%}
+  .head{margin-bottom:6rem}
+  .head-eyebrow{margin:0 0 1.25rem}
+  h1{font-family:var(--font-serif);font-size:clamp(4rem,11vw,10rem);color:#fff;font-weight:400;line-height:.87;letter-spacing:-.02em;margin:0}
+  .divider{height:1px;background:rgba(255,255,255,.07);margin-bottom:clamp(2.5rem,8vw,5rem)}
+  .intro{font-family:var(--font-sans);font-size:.95rem;color:rgba(255,255,255,.45);font-weight:300;line-height:1.9;margin:0 0 2rem;letter-spacing:.01em}
+  .note{font-family:var(--font-sans);font-size:.9rem;color:rgba(255,255,255,.55);font-weight:300;line-height:1.9;margin:0;letter-spacing:.01em}
+  .details{display:flex;flex-direction:column;gap:2.5rem}
+  .detail-label{font-family:var(--font-sans);font-size:.58rem;letter-spacing:.35em;color:rgba(255,255,255,.45);text-transform:uppercase;margin:0 0 .6rem;font-weight:300}
+  .details a,.detail-value{font-family:var(--font-sans);font-size:1rem;letter-spacing:.02em;color:rgba(255,255,255,.75);font-weight:300;margin:0}
+  .details a{text-decoration:none;transition:color .3s ease;display:block}
+  .details a:hover,.details a:focus-visible{color:var(--gold)}
+  @media (max-width:700px){.head{margin-bottom:2rem}.divider{margin-bottom:2.5rem}}
+</style>

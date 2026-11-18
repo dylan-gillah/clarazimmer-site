@@ -1,0 +1,17 @@
+---
+// Responsive, resized image. Always carries width/height so nothing jumps while loading.
+import { webImage } from '../lib/images';
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'srcset' | 'width' | 'height'> {
+  path: string;
+  alt: string;
+  /** Rendered width hint for the browser, e.g. "(max-width: 700px) 100vw, 50vw". */
+  sizes?: string;
+}
+const { path, alt, sizes = '100vw', loading = 'lazy', decoding = 'async', style, ...rest } = Astro.props;
+const img = await webImage(path);
+// Lock the shape to the original's, so the smaller copies' rounding can't shift the layout by a pixel.
+const css = [`aspect-ratio:${img.width} / ${img.height}`, style].filter(Boolean).join(';');
+---
+<img src={img.src} srcset={img.srcset} sizes={sizes} width={img.width} height={img.height} alt={alt} loading={loading} decoding={decoding} style={css} {...rest} />

@@ -1,0 +1,553 @@
+# Pages CMS configuration for clarazimmer.com — https://pagescms.org/docs/configuration/
+#
+# Every field below maps 1:1 to the content schema in src/content.config.ts. If an edit is
+# malformed (missing title, wrong video number, missing image…) the GitHub build stops with a
+# plain-English message and the live site stays as it was.
+
+media:
+  input: media
+  output: /media
+  extensions: [jpg, jpeg, png, webp]
+  rename: safe
+
+settings:
+  # Keep any keys this file does not describe when saving (safety net for future fields).
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "content: add {path} (via Pages CMS)"
+      update: "content: update {path} (via Pages CMS)"
+      delete: "content: delete {path} (via Pages CMS)"
+      rename: "content: rename {oldPath} -> {newPath} (via Pages CMS)"
+
+components:
+  label_value:
+    type: object
+    list:
+      collapsible:
+        collapsed: true
+        summary: "{label}: {value}"
+    fields:
+      - name: label
+        label: Label
+        type: string
+        required: true
+        description: "e.g. Director, Camera, Runtime"
+      - name: value
+        label: Value
+        type: string
+        required: true
+        description: "e.g. Clara B. Zimmer, ARRI Alexa Mini, 14 min"
+
+content:
+  # ───────────────────────────── Films ─────────────────────────────
+  - name: films
+    label: Films
+    type: collection
+    path: src/content/films
+    format: json
+    filename:
+      template: "{title}.json"
+      field: create
+    operations:
+      # A film's web address comes from its file name, so renaming would break existing links.
+      rename: false
+    view:
+      fields: [title, year, order, show_on_work_page]
+      primary: title
+      sort: [order, title, year]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: >-
+          Shown on the Work page and in the browser tab. The film's web address is made from the
+          file name chosen when you first create it — "My New Film" becomes clarazimmer.com/FilmMyNewFilm.
+      - name: display_title
+        label: Title as shown on the film page (optional)
+        type: text
+        description: Only if you want the big title split over several lines — press Enter where a new line should start. Leave empty to use the Title.
+      - name: year
+        label: Year
+        type: string
+        pattern:
+          regex: "^(\\d{4})?$"
+          message: Four digits, e.g. 2026 — or leave empty
+        description: Shown next to the title. Leave empty if you don't want a year shown.
+      - name: category
+        label: Category
+        type: string
+        required: true
+        description: "e.g. Short Film, Art Performance Film, Short Film · In Festival Circuit"
+      - name: order
+        label: Position on the Work page
+        type: number
+        required: true
+        options:
+          min: 1
+        description: 1 = top of the Work page, 2 = second, and so on. To move a film up, give it a smaller number than the one above it.
+      - name: show_on_work_page
+        label: Show on the Work page
+        type: boolean
+        default: true
+        description: Switch off to hide the film from the Work list (its own page still exists).
+      - name: thumbnail
+        label: Work page image
+        type: image
+        required: true
+        description: The wide picture shown for this film on the Work page (and when the page is shared). Landscape works best.
+      - name: logline
+        label: Logline (optional)
+        type: text
+        description: One or two sentences. Shown under the title on the Work page and on the film page.
+      - name: video_platform
+        label: Video site
+        type: select
+        default: none
+        options:
+          values:
+            - { name: none, label: "None — show the Top image instead" }
+            - { name: vimeo, label: Vimeo }
+            - { name: youtube, label: YouTube }
+      - name: video_id
+        label: Video number
+        type: string
+        pattern:
+          regex: "^([0-9]{5,12}|[A-Za-z0-9_-]{11})?$"
+          message: "Vimeo: only the digits at the end of the link. YouTube: the 11 characters after watch?v="
+        description: >-
+          Vimeo — the digits at the end of the link (vimeo.com/935853065 → 935853065).
+          YouTube — the 11 characters after "watch?v=" (youtube.com/watch?v=i-9bETKR_qw → i-9bETKR_qw).
+      - name: video_private_code
+        label: Vimeo private link code (optional)
+        type: string
+        pattern:
+          regex: "^([0-9a-fA-F]{6,20})?$"
+          message: Only the letters and digits after the video number
+        description: Only for unlisted Vimeo videos whose link has a second part, e.g. vimeo.com/1172088348/b8e9f5c8e0 → b8e9f5c8e0. Leave empty otherwise.
+      - name: video_shape
+        label: Video shape
+        type: select
+        default: "16:9"
+        options:
+          values:
+            - { name: "16:9", label: "16:9 — standard widescreen" }
+            - { name: "2.39:1", label: "2.39:1 — scope" }
+            - { name: "2.2:1", label: "2.2:1 — wide" }
+            - { name: "4:3", label: "4:3 — square-ish" }
+        description: Match the shape of the video so there are no black bars around the player.
+      - name: video_params
+        label: Video player settings
+        type: string
+        hidden: true
+      - name: hero_image
+        label: Top image (when there is no video)
+        type: image
+        description: Large picture at the top of the film page. Only used when Video site is None.
+      - name: synopsis
+        label: Synopsis (optional)
+        type: text
+        description: Shown next to the credits. Leave an empty line between paragraphs.
+      - name: credits
+        label: Credits
+        component: label_value
+        description: e.g. Director — Tim Litwinschuh. Drag to reorder.
+      - name: details
+        label: Behind the lens / technical details (optional)
+        component: label_value
+        description: e.g. Camera — ARRI Alexa Mini, Lenses — Zeiss Super Speed.
+      - name: stills
+        label: Stills
+        type: image
+        options:
+          multiple: true
+        description: Frames from the film, shown two per row. They keep the shape of the first still, so upload them all in the same shape.
+      - name: bts_photos
+        label: Behind-the-scenes photos
+        type: image
+        options:
+          multiple: true
+        description: Photos from set, shown three per row and cropped to the same shape.
+
+  # ───────────────────────────── Pages ─────────────────────────────
+  - name: pages
+    label: Pages
+    type: group
+    items:
+      - name: home
+        label: Home page
+        type: file
+        path: src/data/home.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: hero_image
+            label: Big background image
+            type: image
+            required: true
+          - name: eyebrow
+            label: Small gold line above the name
+            type: string
+            required: true
+          - name: name
+            label: Name
+            type: text
+            required: true
+            description: Press Enter where the line should break.
+          - name: intro
+            label: Intro text
+            type: text
+            required: true
+          - name: hero_button
+            label: Button text (links to the Work page)
+            type: string
+            required: true
+          - name: selected_work_heading
+            label: Heading above the stills
+            type: string
+            required: true
+          - name: all_work_link
+            label: Link text next to that heading
+            type: string
+            required: true
+          - name: featured_stills
+            label: Featured stills
+            type: object
+            list:
+              min: 1
+              collapsible:
+                collapsed: true
+                summary: "Still {index}"
+            description: The grid of stills on the home page. Each one links to a film page. Drag to reorder.
+            fields:
+              - name: image
+                label: Still
+                type: image
+                required: true
+              - name: film
+                label: Film it links to
+                type: reference
+                required: true
+                options:
+                  collection: films
+                  value: "{path}"
+                  label: "{title}"
+          - name: about_heading
+            label: About section heading
+            type: text
+            required: true
+            description: Press Enter where the line should break.
+          - name: about_text
+            label: About section text
+            type: text
+            required: true
+            description: Put *asterisks* around words to make them italic, e.g. *1899*.
+          - name: about_link
+            label: About link text
+            type: string
+            required: true
+          - name: page_title
+            label: Browser tab / Google title
+            type: string
+            required: true
+          - name: page_description
+            label: Google / sharing description
+            type: text
+            required: true
+
+      - name: about
+        label: About page
+        type: file
+        path: src/data/about.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: photo
+            label: Photo
+            type: image
+            required: true
+            description: Portrait-shaped photos work best (it is shown tall).
+          - name: photo_description
+            label: Photo description (for screen readers)
+            type: string
+            required: true
+          - name: caption
+            label: Caption under the photo
+            type: string
+          - name: eyebrow
+            label: Small gold line
+            type: string
+            required: true
+          - name: name
+            label: Name
+            type: text
+            required: true
+            description: Press Enter where the line should break.
+          - name: bio
+            label: Biography
+            type: text
+            required: true
+            description: Leave an empty line between paragraphs. Put *asterisks* around titles to make them italic, e.g. *The Matrix Resurrections*.
+          - name: specialisms_heading
+            label: Specialisms heading
+            type: string
+          - name: specialisms
+            label: Specialisms
+            type: string
+            list: true
+          - name: page_title
+            label: Browser tab / Google title
+            type: string
+            required: true
+          - name: page_description
+            label: Google / sharing description
+            type: text
+            required: true
+          - name: share_image
+            label: Image shown when the page is shared
+            type: image
+            required: true
+
+      - name: awards
+        label: Awards page
+        type: file
+        path: src/data/awards.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: eyebrow
+            label: Small gold line
+            type: string
+            required: true
+          - name: heading
+            label: Heading
+            type: text
+            required: true
+            description: Press Enter where the line should break.
+          - name: awards
+            label: Awards
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{year} · {title} — {festival}"
+            description: Shown in this order. Drag to reorder; add new ones at the top.
+            fields:
+              - name: year
+                label: Year
+                type: string
+                required: true
+                pattern:
+                  regex: "^\\d{4}$"
+                  message: Four digits, e.g. 2024
+              - name: title
+                label: Award
+                type: string
+                required: true
+                description: "e.g. Official Selection, Award Winner — Cinematography"
+              - name: festival
+                label: Festival
+                type: string
+                required: true
+              - name: film
+                label: Film
+                type: string
+              - name: type
+                label: Badge
+                type: select
+                required: true
+                default: Official Selection
+                options:
+                  values: [Winner, Finalist, Official Selection]
+                description: Winner shows in gold.
+          - name: footnote
+            label: Line at the bottom
+            type: string
+
+      - name: credits
+        label: Credits page
+        type: file
+        path: src/data/credits.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: eyebrow
+            label: Small gold line
+            type: string
+            required: true
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: credits
+            label: Credits
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{year} · {title} ({badge})"
+            description: Grouped by year automatically (newest year first). Within a year they appear in this order.
+            fields:
+              - name: year
+                label: Year
+                type: string
+                required: true
+                pattern:
+                  regex: "^\\d{4}$"
+                  message: Four digits, e.g. 2025
+              - name: title
+                label: Production
+                type: string
+                required: true
+              - name: type
+                label: Type
+                type: string
+                description: "e.g. Short Film, TV Series — Netflix, Commercial"
+              - name: role
+                label: Your role
+                type: string
+                required: true
+                description: "e.g. Director of Photography, 1st Assistant Camera"
+              - name: badge
+                label: Badge (short role shown on the left)
+                type: select
+                required: true
+                default: DoP
+                options:
+                  values: [DoP, Director, Camera Op., 1st AC, A-Cam, B-Cam, B-Cam / A-Cam, Camera, Camera Dept., Editor, Camera Trainee, Post Production]
+              - name: director
+                label: Director
+                type: string
+              - name: producer
+                label: Production company
+                type: string
+
+      - name: photography
+        label: Photography page
+        type: file
+        path: src/data/photography.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: eyebrow
+            label: Small gold line
+            type: string
+            required: true
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: sections
+            label: Galleries
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{heading}"
+            description: "Each gallery has a name (e.g. Analog, Digital) and its photos. Add a gallery to start a new section."
+            fields:
+              - name: heading
+                label: Gallery name
+                type: string
+                required: true
+              - name: photos
+                label: Photos
+                type: image
+                options:
+                  multiple: true
+                description: Shown in two columns, any shape. Drag to reorder.
+
+      - name: contact
+        label: Contact page
+        type: file
+        path: src/data/contact.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: eyebrow
+            label: Small gold line
+            type: string
+            required: true
+          - name: heading
+            label: Heading
+            type: string
+            required: true
+          - name: intro
+            label: Intro text
+            type: text
+          - name: note
+            label: Second paragraph
+            type: text
+          - name: email
+            label: Email
+            type: string
+            required: true
+            pattern:
+              regex: "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+              message: That doesn't look like an email address
+          - name: phone
+            label: Phone
+            type: string
+          - name: based
+            label: Based in
+            type: string
+
+      - name: work
+        label: Work page
+        type: file
+        path: src/data/work.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: eyebrow
+            label: Small gold line
+            type: string
+            required: true
+          - name: heading
+            label: Heading
+            type: text
+            required: true
+            description: Press Enter where the line should break. The films themselves are edited under Films.
+          - name: footnote
+            label: Line at the bottom
+            type: string
+
+      - name: site
+        label: Site settings
+        type: file
+        path: src/data/site.json
+        format: json
+        operations: { delete: false }
+        fields:
+          - name: site_name
+            label: Site title
+            type: string
+            required: true
+            description: Used in browser tabs and when the site is shared.
+          - name: description
+            label: Site description
+            type: text
+            required: true
+            description: Shown by Google and when a page without its own description is shared.
+          - name: share_image
+            label: Default share image
+            type: image
+            required: true
+          - name: icon
+            label: Browser tab icon
+            type: image
+            required: true
+            description: A small square image (PNG).
+          - name: header_name
+            label: Name in the top-left corner
+            type: string
+            required: true
+          - name: footer_name
+            label: Name in the footer
+            type: string
+            required: true

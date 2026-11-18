@@ -1,0 +1,222 @@
+---
+import '../styles/global.css';
+import { getEntry } from 'astro:content';
+import { fixedImage } from '../lib/images';
+
+interface Props {
+  /** Full <title>. */
+  title: string;
+  description?: string;
+  /** /media/... image used when the page is shared. */
+  image?: string;
+  /** Nav item to mark as current. */
+  current?: string;
+}
+
+const site = (await getEntry('site', 'site'))!.data;
+const { title, description = site.description, image = site.share_image, current } = Astro.props;
+const origin = Astro.site!.origin;
+const canonical = new URL(Astro.url.pathname, origin).href;
+const share = await fixedImage(image, 1200);
+const shareUrl = new URL(share.src, origin).href;
+const icon = await fixedImage(site.icon, 192, 'png');
+
+const NAV = [
+  { label: 'Work', href: '/Work/' },
+  { label: 'Credits', href: '/Credits/' },
+  { label: 'Photography', href: '/Photography/' },
+  { label: 'About', href: '/About/' },
+  { label: 'Awards', href: '/Awards/' },
+  { label: 'Contact', href: '/Contact/' },
+];
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: site.site_name, url: origin },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.site_name,
+    url: origin,
+    logo: new URL(icon.src, origin).href,
+  },
+];
+const year = new Date().getFullYear();
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={icon.src} />
+    <link rel="apple-touch-icon" href={icon.src} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={shareUrl} />
+    <meta property="og:image:width" content={String(share.width)} />
+    <meta property="og:image:height" content={String(share.height)} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.site_name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareUrl} />
+    <meta name="theme-color" content="#000000" />
+    {jsonLd.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="cursor" aria-hidden="true">
+        <svg width="80" height="80" viewBox="-40 -40 80 80">
+          <line x1="0" y1="-28" x2="0" y2="28" stroke="#C9A96E" stroke-width="1"></line>
+          <circle cx="0" cy="0" r="9" stroke="#C9A96E" stroke-width="1" fill="none"></circle>
+        </svg>
+      </div>
+      <header class="site-header">
+        <a href="/" class="logo blur-target"><span>{site.header_name}</span></a>
+        <div class="crosshair" aria-hidden="true">
+          <svg width="32" height="32" viewBox="-16 -16 32 32">
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="white" stroke-width="1" opacity="0.7"></line>
+            <circle cx="0" cy="0" r="9" stroke="white" stroke-width="1" fill="none" opacity="0.7"></circle>
+          </svg>
+        </div>
+        <nav class="hidden md:flex desktop-nav" aria-label="Main navigation">
+          {NAV.map((n) => <a href={n.href} class:list={{ current: current === n.label }} aria-current={current === n.label ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+        <button class="flex md:hidden menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+          <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </header>
+      <div class="mobile-menu" id="mobile-menu" hidden>
+        {NAV.map((n, i) => <div class="mobile-item" style={`--i:${i}`}><a href={n.href} class:list={{ current: current === n.label }}>{n.label}</a></div>)}
+      </div>
+      <main class="page-enter">
+        <div class="blur-target"><slot /></div>
+      </main>
+      <footer class="site-footer blur-target">
+        <span>© <span class="year">{year}</span> {site.footer_name}</span>
+      </footer>
+    </div>
+    <script>
+      const root = document.documentElement;
+      // Header glass effect once the page is scrolled.
+      const header = document.querySelector('.site-header')!;
+      const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Hovering a nav link softly blurs everything else.
+      const nav = document.querySelector('.desktop-nav')!;
+      nav.querySelectorAll('a').forEach((a) =>
+        a.addEventListener('mouseenter', () => {
+          root.classList.add('nav-hover');
+          nav.querySelectorAll('a').forEach((b) => b.classList.toggle('dim', b !== a));
+        }),
+      );
+      nav.addEventListener('mouseleave', () => {
+        root.classList.remove('nav-hover');
+        nav.querySelectorAll('a').forEach((b) => b.classList.remove('dim'));
+      });
+
+      // Mobile menu.
+      const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle')!;
+      const menu = document.getElementById('mobile-menu')!;
+      toggle.addEventListener('click', () => {
+        const open = menu.hidden;
+        menu.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        root.classList.toggle('menu-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+
+      // Crosshair cursor on desktop (it follows the mouse; the system cursor stays visible, as before).
+      const cursor = document.querySelector<HTMLElement>('.cursor')!;
+      window.addEventListener(
+        'mousemove',
+        (e) => {
+          if (window.innerWidth <= 768) return;
+          cursor.style.left = `${e.clientX}px`;
+          cursor.style.top = `${e.clientY}px`;
+          const t = e.target as Element | null;
+          cursor.classList.toggle('active', !!t?.closest?.('a,button,[role=button]'));
+        },
+        { passive: true },
+      );
+
+      // Entrance animations.
+      const show = (el: Element) => el.classList.add('in');
+      const io = new Map<string, IntersectionObserver>();
+      const observe = (el: HTMLElement) => {
+        const m = el.dataset.margin ?? '0';
+        let obs = io.get(m);
+        if (!obs) {
+          obs = new IntersectionObserver(
+            (entries, o) =>
+              entries.forEach((en) => {
+                if (en.isIntersecting) {
+                  show(en.target);
+                  o.unobserve(en.target);
+                }
+              }),
+            { rootMargin: `${m}px 0px ${m}px 0px` },
+          );
+          io.set(m, obs);
+        }
+        obs.observe(el);
+      };
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          root.classList.add('ready');
+          document.querySelectorAll<HTMLElement>('[data-reveal],[data-reveal-line]').forEach((el) => {
+            if ((el.dataset.reveal ?? el.dataset.revealLine) === 'view') observe(el);
+            else show(el);
+          });
+        }),
+      );
+      document.querySelectorAll('.year').forEach((y) => (y.textContent = String(new Date().getFullYear())));
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .shell{background:#000;min-height:100vh;color:#fff;font-family:var(--font-sans)}
+  .cursor{position:fixed;left:-200px;top:-200px;transform:translate(-50%,-50%);pointer-events:none;z-index:99999;width:0;height:0}
+  .cursor svg{position:absolute;left:-40px;top:-40px;overflow:visible}
+  .cursor circle{transition:r .45s cubic-bezier(.22,1,.36,1)}
+  .cursor.active circle{r:16px}
+  @media (max-width:768px){.cursor{display:none}}
+
+  .site-header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;background:transparent;border-bottom:none;transition:background .5s ease,backdrop-filter .5s ease,border-color .5s ease}
+  .site-header.scrolled{background:rgba(255,255,255,.05);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border-bottom:1px solid rgba(255,255,255,.07)}
+  .logo{text-decoration:none;z-index:10;display:inline-block}
+  .logo span{font-family:var(--font-logo);font-size:1.05rem;font-weight:400;color:#fff;letter-spacing:-.05em}
+  .crosshair{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .desktop-nav{gap:2.5rem;align-items:center}
+  .desktop-nav a{text-decoration:none;font-family:var(--font-sans);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;font-weight:300;color:#fff;filter:blur(0);opacity:.8;transition:filter .4s ease,opacity .4s ease,color .3s ease}
+  .desktop-nav a.current{opacity:1}
+  .desktop-nav a.dim{filter:blur(1.2px);opacity:.5}
+  .blur-target{filter:blur(0);transition:filter .55s cubic-bezier(.25,.46,.45,.94)}
+  .nav-hover .blur-target{filter:blur(1.4px)}
+  .menu-toggle{background:none;border:none;color:#fff;padding:4px;z-index:1001}
+  .menu-toggle .icon-close,.menu-open .menu-toggle .icon-open{display:none}
+  .menu-open .menu-toggle .icon-close{display:block}
+
+  .mobile-menu{position:fixed;inset:0;background:#000;z-index:999;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:1rem;animation:menu-fade .3s ease both}
+  .mobile-menu[hidden]{display:none}
+  .mobile-item{animation:menu-item .4s var(--ease-out-expo) both;animation-delay:calc(var(--i) * .07s)}
+  .mobile-item a{text-decoration:none;font-family:var(--font-logo);font-size:clamp(2.5rem,10vw,4rem);font-weight:400;color:#fff;letter-spacing:-.02em}
+  .mobile-item a.current{color:rgba(255,255,255,.9)}
+  @keyframes menu-fade{from{opacity:0}}
+  @keyframes menu-item{from{opacity:0;transform:translateY(24px)}}
+
+  .js .page-enter{opacity:0;transform:translateX(40px);filter:blur(6px)}
+  .js.ready .page-enter{opacity:1;transform:none;filter:blur(0);transition:opacity .5s var(--ease-out-expo),transform .5s var(--ease-out-expo),filter .5s var(--ease-out-expo)}
+  @media (prefers-reduced-motion:reduce){.js .page-enter,.js.ready .page-enter{opacity:1;transform:none;filter:none;transition:none}.mobile-menu,.mobile-item{animation:none}}
+
+  .site-footer{border-top:1px solid rgba(255,255,255,.04);padding:1.5rem 3rem;text-align:center}
+  .site-footer > span{font-family:var(--font-logo);font-size:.62rem;color:#fff;letter-spacing:.04em;font-weight:400}
+</style>

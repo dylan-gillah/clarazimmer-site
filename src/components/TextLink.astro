@@ -1,0 +1,9 @@
+---
+// Underlined uppercase link used on the home page ("View Work →", "About Clara").
+interface Props { href: string }
+---
+<a class="text-link" href={Astro.props.href}><slot /></a>
+<style>
+  .text-link{font-family:var(--font-sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;text-decoration:none;font-weight:300;color:rgba(255,255,255,.6);border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:3px;transition:color .35s ease,border-color .35s ease;display:inline-block}
+  .text-link:hover,.text-link:focus-visible{color:var(--gold);border-color:var(--gold)}
+</style>

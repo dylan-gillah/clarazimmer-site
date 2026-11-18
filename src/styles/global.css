@@ -1,0 +1,58 @@
+/* Design tokens. The original site named Cormorant Garamond / Playfair Display / Inter but never
+   loaded them, so what visitors saw was Georgia, the browser serif and the system sans. These
+   stacks are kept verbatim so the rebuild renders exactly the same type. */
+:root {
+  --font-serif: 'Cako', 'Playfair Display', serif;
+  --font-serif-alt: 'Cako', 'Cormorant Garamond', Georgia, serif;
+  --font-logo: 'Cako', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --gold: #c9a96e;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --page-pad: 3rem;
+}
+
+/* Tailwind v3 preflight (MIT) — the original pages were laid out on top of it. */
+*,:before,:after{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}
+html{line-height:1.5;-webkit-text-size-adjust:100%;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji";-webkit-tap-highlight-color:transparent}
+body{margin:0;line-height:inherit;background:#000;color:#fff}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}
+a{color:inherit;text-decoration:inherit}
+button{font-family:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0;text-transform:none;-webkit-appearance:button;background-color:transparent;background-image:none;cursor:pointer}
+blockquote,dl,dd,h1,h2,h3,h4,h5,h6,hr,figure,p,pre{margin:0}
+ol,ul,menu{list-style:none;margin:0;padding:0}
+img,svg,video,canvas,audio,iframe,embed,object{display:block;vertical-align:middle}
+img,video{max-width:100%;height:auto}
+[hidden]{display:none}
+
+/* The handful of Tailwind utilities the original layout used. */
+.flex{display:flex}
+.grid{display:grid}
+.hidden{display:none}
+.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
+.items-start{align-items:flex-start}
+.gap-12{gap:3rem}
+.gap-16{gap:4rem}
+@media (min-width:768px){
+  .md\:flex{display:flex}
+  .md\:hidden{display:none}
+  .md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .md\:gap-16{gap:4rem}
+  .md\:gap-24{gap:6rem}
+}
+
+/* Shared pieces */
+.container{max-width:1100px;margin:0 auto;padding:0 var(--page-pad)}
+.page{min-height:100vh;background:#000;color:#fff;padding-top:7rem;padding-bottom:8rem}
+.eyebrow{font-family:var(--font-sans);font-size:.62rem;letter-spacing:.42em;color:var(--gold);text-transform:uppercase;font-weight:300}
+.label{font-family:var(--font-sans);font-size:.58rem;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;font-weight:300}
+.rule{height:1px;background:rgba(255,255,255,.07)}
+.fit{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+
+/* Entrance animations (replacing framer-motion). Without JavaScript everything is simply shown. */
+:root.js [data-reveal]{transition:opacity var(--dur,.8s) var(--ease,ease-out) var(--delay,0s),transform var(--dur,.8s) var(--ease,ease-out) var(--delay,0s)}
+:root.js [data-reveal]:not(.in){opacity:var(--from-o,0);transform:translate(var(--from-x,0),var(--from-y,0))}
+:root.js [data-reveal-line]{transition:transform var(--dur,1.2s) ease-in-out var(--delay,.3s);transform-origin:left center}
+:root.js [data-reveal-line]:not(.in){transform:scaleX(0)}
+@media (prefers-reduced-motion:reduce){
+  :root.js [data-reveal],:root.js [data-reveal-line]{transition:none!important;opacity:1!important;transform:none!important}
+}

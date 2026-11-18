@@ -1,0 +1,15 @@
+---
+// Label / value list (film credits, technical details).
+interface Props { items: { label: string; value: string }[] }
+---
+<div class="specs">
+  {Astro.props.items.map((s) => (
+    <div><p class="spec-label">{s.label}</p><p class="spec-value">{s.value}</p></div>
+  ))}
+</div>
+<style>
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:2rem}
+  .spec-label{font-family:var(--font-sans);font-size:.56rem;letter-spacing:.2em;color:rgba(255,255,255,.6);text-transform:uppercase;font-weight:300;margin:0 0 .3rem}
+  .spec-value{font-family:var(--font-serif-alt);font-size:1rem;color:rgba(255,255,255,.8);font-weight:400;margin:0;letter-spacing:.02em}
+  @media (max-width:700px){.specs{grid-template-columns:repeat(2,1fr);gap:1.5rem}}
+</style>

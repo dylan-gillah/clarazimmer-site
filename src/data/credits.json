@@ -1,0 +1,339 @@
+{
+  "eyebrow": "Filmography",
+  "heading": "Credits",
+  "credits": [
+    {
+      "year": "2025",
+      "title": "Rio & Kyo",
+      "type": "Experimental Film",
+      "role": "Director of Photography",
+      "badge": "DoP",
+      "director": "Tim Litwinschuh",
+      "producer": "Street Light Productions"
+    },
+    {
+      "year": "2024",
+      "title": "Schattenseite",
+      "type": "TV Series — ARD/Degeto/funk/HR",
+      "role": "Daily B-Cam Additional / A-Cam Replacement",
+      "badge": "B-Cam / A-Cam",
+      "director": "",
+      "producer": "Dreamtool Entertainment GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Jenseits der Spree",
+      "type": "TV Series — SRF/ZDF",
+      "role": "2 DT B-Cam",
+      "badge": "B-Cam",
+      "director": "",
+      "producer": "Studio Zentral"
+    },
+    {
+      "year": "2024",
+      "title": "Nine Perfect Strangers",
+      "type": "TV Series — Hulu",
+      "role": "Main Unit B-Cam (3 SD)",
+      "badge": "B-Cam",
+      "director": "",
+      "producer": "Blossom Films"
+    },
+    {
+      "year": "2024",
+      "title": "Menschen im Hof",
+      "type": "Series",
+      "role": "Director of Photography",
+      "badge": "DoP",
+      "director": "",
+      "producer": "Weibatz Productions"
+    },
+    {
+      "year": "2024",
+      "title": "Die Spreewaldklinik",
+      "type": "Daily Soap — SAT.1",
+      "role": "Assistant Editor (Additional 3 months)",
+      "badge": "Editor",
+      "director": "",
+      "producer": "ndF neue deutsche Filmgesellschaft mbH"
+    },
+    {
+      "year": "2024",
+      "title": "Barrierefreiheit",
+      "type": "Short Film",
+      "role": "Director",
+      "badge": "Director",
+      "director": "",
+      "producer": "Vincent Netzer Produktion"
+    },
+    {
+      "year": "2024",
+      "title": "Stereotopie",
+      "type": "Short Film",
+      "role": "1st Assistant Camera",
+      "badge": "1st AC",
+      "director": "Moritz Geßner",
+      "producer": ""
+    },
+    {
+      "year": "2024",
+      "title": "The Matriarch",
+      "type": "Short Film",
+      "role": "Camera Operator",
+      "badge": "Camera Op.",
+      "director": "Omram Bhagchandani",
+      "producer": ""
+    },
+    {
+      "year": "2024",
+      "title": "Zalando — The Perfect X",
+      "type": "Corporate Series",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "",
+      "producer": "Highsnobiety / Titel Media GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Toggo — Ich tick Toggo",
+      "type": "Station ID",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Lars Timmermann",
+      "producer": "EASYdoesit GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Starcar — Stars in Car",
+      "type": "Commercial",
+      "role": "Camera Operator",
+      "badge": "Camera Op.",
+      "director": "Jannis Döring",
+      "producer": ""
+    },
+    {
+      "year": "2024",
+      "title": "Starcar Europa Service Group AG",
+      "type": "Corporate Film",
+      "role": "Camera Operator",
+      "badge": "Camera Op.",
+      "director": "Jannis Döring",
+      "producer": ""
+    },
+    {
+      "year": "2024",
+      "title": "Fielmann — SS 2024 Blue Monday",
+      "type": "Commercial",
+      "role": "Video Journalist",
+      "badge": "Camera Dept.",
+      "director": "",
+      "producer": "Apricot Berlin"
+    },
+    {
+      "year": "2024",
+      "title": "Ouzo — Relax. We are Greeks",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Sebastian Schipper",
+      "producer": "Kanu Film GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Musterring — Du bist Zuhause",
+      "type": "Commercial — 3 Spots",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Kai Wiesinger",
+      "producer": "Wolffpack Vision GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "eBay — WG Zimmer",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Ivan Boljat",
+      "producer": "Fount GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Enpal — Family Member",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Sergej Moyado",
+      "producer": "doity Produktion GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Lidl — UEFA Euro 24",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Julia Mücke",
+      "producer": "Bears Calling GmbH"
+    },
+    {
+      "year": "2024",
+      "title": "Surig — Bubble",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Sergej Moyado",
+      "producer": "doity Produktion GmbH"
+    },
+    {
+      "year": "2023",
+      "title": "Tatort — Trotzdem",
+      "type": "TV Movie/Series — BR",
+      "role": "A-Cam",
+      "badge": "A-Cam",
+      "director": "",
+      "producer": "Hager Moss Film GmbH"
+    },
+    {
+      "year": "2023",
+      "title": "Die Ironie des Lebens",
+      "type": "Feature Film",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Markus Goller",
+      "producer": "Sunny Side Up Film GmbH"
+    },
+    {
+      "year": "2023",
+      "title": "Runaways",
+      "type": "Short Film",
+      "role": "Director of Photography & Screenwriter",
+      "badge": "DoP",
+      "director": "Tim Litwinschuh",
+      "producer": "Deriva Films UG"
+    },
+    {
+      "year": "2023",
+      "title": "I Am Your Father",
+      "type": "Education/Training",
+      "role": "1st Assistant Camera",
+      "badge": "1st AC",
+      "director": "Gian Suhner",
+      "producer": "DFFB"
+    },
+    {
+      "year": "2023",
+      "title": "To the Body",
+      "type": "Short Film",
+      "role": "1st Assistant Camera",
+      "badge": "1st AC",
+      "director": "Carla Massolini",
+      "producer": ""
+    },
+    {
+      "year": "2023",
+      "title": "ZDF — Der Wunschzettel",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Sergej Moyado",
+      "producer": "doity Produktion GmbH"
+    },
+    {
+      "year": "2023",
+      "title": "Treets — Futurebae",
+      "type": "Commercial",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Viktor Heinz",
+      "producer": "Mutter & Vater Productions GmbH"
+    },
+    {
+      "year": "2023",
+      "title": "BMW — U10 Launch Campaign",
+      "type": "Commercial — Multiple Films",
+      "role": "Camera Department",
+      "badge": "Camera Dept.",
+      "director": "Sandro Cannova",
+      "producer": "27 Kilometer Entertainment GmbH"
+    },
+    {
+      "year": "2022",
+      "title": "The Signal",
+      "type": "Limited Series — Netflix",
+      "role": "B-Cam",
+      "badge": "B-Cam",
+      "director": "",
+      "producer": "Bon Voyage Films GmbH"
+    },
+    {
+      "year": "2022",
+      "title": "The Hunger Games: The Ballad of Songbirds and Snakes",
+      "type": "Feature Film",
+      "role": "B-Cam (9 days)",
+      "badge": "Camera",
+      "director": "Francis Lawrence",
+      "producer": "Lionsgate"
+    },
+    {
+      "year": "2022",
+      "title": "Role Play",
+      "type": "Feature Film — Prime Video",
+      "role": "1 day A-Cam / 5 days Additional 2nd Unit",
+      "badge": "A-Cam",
+      "director": "Thomas Vincent",
+      "producer": "Studiocanal"
+    },
+    {
+      "year": "2022",
+      "title": "Constellation",
+      "type": "TV Series — Apple TV+",
+      "role": "3 DT Red / White Cam",
+      "badge": "Camera",
+      "director": "Michelle MacLaren",
+      "producer": "Turbine Studios GmbH"
+    },
+    {
+      "year": "2022",
+      "title": "Three on a Match",
+      "type": "Short Film",
+      "role": "Director of Photography, Screenwriter, & Producer",
+      "badge": "DoP",
+      "director": "Tim Litwinschuh",
+      "producer": "Deriva Films UG"
+    },
+    {
+      "year": "2021",
+      "title": "1899",
+      "type": "TV Series — Netflix",
+      "role": "Camera Trainee",
+      "badge": "Camera Trainee",
+      "director": "Baran bo Odar",
+      "producer": "Dark Ways GmbH"
+    },
+    {
+      "year": "2021",
+      "title": "Liebesdings",
+      "type": "Feature Film",
+      "role": "Camera Trainee",
+      "badge": "Camera Trainee",
+      "director": "Anika Decker",
+      "producer": "Constantin Film"
+    },
+    {
+      "year": "2021",
+      "title": "Feuerkreis",
+      "type": "Short Film",
+      "role": "Additional Editor",
+      "badge": "Editor",
+      "director": "Jasper Graeve",
+      "producer": ""
+    },
+    {
+      "year": "2020",
+      "title": "The Matrix Resurrections",
+      "type": "Feature Film",
+      "role": "Post Production Assistant",
+      "badge": "Post Production",
+      "director": "Lana Wachowski",
+      "producer": "Warner Bros. Pictures"
+    }
+  ]
+}
