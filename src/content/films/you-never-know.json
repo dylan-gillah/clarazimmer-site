@@ -67,6 +67,10 @@
     {
       "label": "Genre",
       "value": "Psychological Drama"
+    },
+    {
+      "label": "Camera",
+      "value": "ARRI Alexa Mini"
     }
   ]
 }
