@@ -36,10 +36,7 @@ const films = (await allFilms()).filter((f) => f.data.show_on_work_page);
                 <div class="meta">
                   <div>
                     <a href={href} class="title-link">
-                      <h3>
-                        {f.data.title}
-                        {f.data.year && <span class="year">({f.data.year})</span>}
-                      </h3>
+                      <h3>{f.data.title}{f.data.year && <span class="year">({f.data.year})</span>}</h3>
                     </a>
                     {f.data.logline && <p class="logline">{f.data.logline}</p>}
                   </div>

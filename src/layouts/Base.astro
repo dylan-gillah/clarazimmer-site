@@ -98,7 +98,7 @@ const year = new Date().getFullYear();
         <div class="blur-target"><slot /></div>
       </main>
       <footer class="site-footer blur-target">
-        <span>© <span class="year">{year}</span> {site.footer_name}</span>
+        <span>© <span id="footer-year">{year}</span> {site.footer_name}</span>
       </footer>
     </div>
     <script>
@@ -177,7 +177,7 @@ const year = new Date().getFullYear();
           });
         }),
       );
-      document.querySelectorAll('.year').forEach((y) => (y.textContent = String(new Date().getFullYear())));
+      document.getElementById("footer-year")!.textContent = String(new Date().getFullYear());
     </script>
   </body>
 </html>
