@@ -28,14 +28,6 @@
     {
       "label": "Format",
       "value": "2K Scope · 24FPS"
-    },
-    {
-      "label": "Camera",
-      "value": "Alexa Mini"
-    },
-    {
-      "label": "Lenses",
-      "value": "Optica Elite Spherical"
     }
   ],
   "stills": [
@@ -71,6 +63,10 @@
     {
       "label": "Camera",
       "value": "ARRI Alexa Mini"
+    },
+    {
+      "label": "Lenses",
+      "value": "Optica Elite Spherical"
     }
   ]
 }
