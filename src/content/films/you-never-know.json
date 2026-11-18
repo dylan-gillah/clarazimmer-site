@@ -1,19 +1,13 @@
 {
   "title": "You Never Know",
-  "display_title": "",
   "year": "2026",
   "category": "Short Film · In Festival Circuit",
   "order": 1,
   "show_on_work_page": true,
   "thumbnail": "/media/e20e931ba_ynk_still_01.jpg",
-  "logline": "",
   "video_platform": "none",
-  "video_id": "",
-  "video_private_code": "",
-  "video_shape": "16:9",
-  "video_params": "",
+  "video_shape": "2.39:1",
   "hero_image": "/media/e20e931ba_ynk_still_01.jpg",
-  "synopsis": "",
   "credits": [
     {
       "label": "Director",
@@ -29,7 +23,7 @@
     },
     {
       "label": "Runtime",
-      "value": "19:58min"
+      "value": "19:58 min"
     },
     {
       "label": "Format",
@@ -41,10 +35,9 @@
     },
     {
       "label": "Lenses",
-      "value": "Elite"
+      "value": "Optica Elite Spherical"
     }
   ],
-  "details": [],
   "stills": [
     "/media/e20e931ba_ynk_still_01.jpg",
     "/media/bd9bf4bbf_ynk_still_02.jpg",
