@@ -63,6 +63,10 @@
     {
       "label": "Location",
       "value": "Berlin"
+    },
+    {
+      "label": "Genre",
+      "value": "Psychological Drama"
     }
   ]
 }
