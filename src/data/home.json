@@ -10,6 +10,22 @@
   "all_work_link": "All Work →",
   "featured_stills": [
     {
+      "image": "/media/554db4869_afters_still_02.jpg",
+      "film": "src/content/films/afters.json"
+    },
+    {
+      "image": "/media/48b5085eb_afters_still_01.jpg",
+      "film": "src/content/films/afters.json"
+    },
+    {
+      "image": "/media/96447a6f7_afters_still_04.jpg",
+      "film": "src/content/films/afters.json"
+    },
+    {
+      "image": "/media/3b9b20102_afters_still_03.jpg",
+      "film": "src/content/films/afters.json"
+    },
+    {
       "image": "/media/be1ea7707_unrequited_still_1.jpg",
       "film": "src/content/films/unrequited.json"
     },
@@ -24,22 +40,6 @@
     {
       "image": "/media/1d3933eb4_unrequited_still_4.jpg",
       "film": "src/content/films/unrequited.json"
-    },
-    {
-      "image": "/media/48b5085eb_afters_still_01.jpg",
-      "film": "src/content/films/afters.json"
-    },
-    {
-      "image": "/media/554db4869_afters_still_02.jpg",
-      "film": "src/content/films/afters.json"
-    },
-    {
-      "image": "/media/3b9b20102_afters_still_03.jpg",
-      "film": "src/content/films/afters.json"
-    },
-    {
-      "image": "/media/96447a6f7_afters_still_04.jpg",
-      "film": "src/content/films/afters.json"
     },
     {
       "image": "/media/bd9bf4bbf_ynk_still_02.jpg",
