@@ -30,14 +30,6 @@
     {
       "label": "Format",
       "value": "2K Scope · 25FPS"
-    },
-    {
-      "label": "Camera",
-      "value": "Alexa Mini"
-    },
-    {
-      "label": "Lenses",
-      "value": "Atlas Orion"
     }
   ],
   "stills": [
@@ -69,5 +61,23 @@
     "/media/a222a84d7_afters_bts_19.jpg",
     "/media/35bbff4f5_afters_bts_20.jpg"
   ],
-  "synopsis": "Rolling on through morning after a closing party at their favourite club, best friends Ed, Jay and Suzi chat shit, do bumps and melt into the sofa. But when Jay reveals he's having a kid, Ed realises these endless mornings are numbered."
+  "synopsis": "Rolling on through morning after a closing party at their favourite club, best friends Ed, Jay and Suzi chat shit, do bumps and melt into the sofa. But when Jay reveals he's having a kid, Ed realises these endless mornings are numbered.",
+  "details": [
+    {
+      "label": "Location",
+      "value": "Beaconsfield"
+    },
+    {
+      "label": "Camera",
+      "value": "ARRI Alexa Mini"
+    },
+    {
+      "label": "Lenses",
+      "value": "Atlas Orion Anamorphics"
+    },
+    {
+      "label": "School",
+      "value": "National Film and Television School"
+    }
+  ]
 }
