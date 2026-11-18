@@ -1,6 +1,5 @@
 {
   "title": "Unrequited",
-  "display_title": "",
   "year": "2026",
   "category": "Short Film",
   "order": 3,
@@ -9,11 +8,8 @@
   "logline": "Shot on 16mm at the National Film & Television School.",
   "video_platform": "vimeo",
   "video_id": "1171491200",
-  "video_private_code": "",
   "video_shape": "2.2:1",
   "video_params": "color=C9A96E&title=0&byline=0&portrait=0",
-  "hero_image": "",
-  "synopsis": "",
   "credits": [
     {
       "label": "Cinematographer",
@@ -25,7 +21,7 @@
     },
     {
       "label": "Runtime",
-      "value": "18min 50sec"
+      "value": "18:50 min"
     },
     {
       "label": "Format",
@@ -48,12 +44,10 @@
       "value": "The National Film & Television School"
     }
   ],
-  "details": [],
   "stills": [
     "/media/be1ea7707_unrequited_still_1.jpg",
     "/media/1871e86d2_unrequited_still_2.jpg",
     "/media/d9e42e1ef_unrequited_still_3.jpg",
     "/media/1d3933eb4_unrequited_still_4.jpg"
-  ],
-  "bts_photos": []
+  ]
 }
