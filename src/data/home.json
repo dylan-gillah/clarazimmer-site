@@ -18,6 +18,14 @@
       "film": "src/content/films/balanceme.json"
     },
     {
+      "image": "/media/still-2026-11-22-160833114-2.jpg",
+      "film": "src/content/films/theforgottencorner.json"
+    },
+    {
+      "image": "/media/still-2026-11-22-160833111-1.jpg",
+      "film": "src/content/films/theforgottencorner.json"
+    },
+    {
       "image": "/media/554db4869_afters_still_02.jpg",
       "film": "src/content/films/afters.json"
     },
@@ -87,7 +95,7 @@
     },
     {
       "image": "/media/8d4f3d094_94047e3a-5d10-4a02-ba7b-097441817d8a.jpg",
-      "film": "src/content/films/boundless-heart.json"
+      "film": "src/content/films/agalma.json"
     }
   ],
   "about_heading": "From the edit\nto the lens",
