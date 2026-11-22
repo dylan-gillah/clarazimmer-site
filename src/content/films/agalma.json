@@ -1,9 +1,8 @@
 {
   "title": "Agalma",
-  "display_title": "",
   "year": "2023",
   "category": "Art Performance Film",
-  "order": 6,
+  "order": 7,
   "show_on_work_page": true,
   "thumbnail": "/media/52ca282be_Screenshot2026-03-11at140848.png",
   "logline": "Shot on Blackmagic Pocket Cinema Camera 6K.",
@@ -12,8 +11,6 @@
   "video_private_code": "b8e9f5c8e0",
   "video_shape": "16:9",
   "video_params": "title=0&byline=0&portrait=0",
-  "hero_image": "",
-  "synopsis": "",
   "credits": [
     {
       "label": "Location",
@@ -49,7 +46,5 @@
       "label": "Year",
       "value": "2023"
     }
-  ],
-  "stills": [],
-  "bts_photos": []
+  ]
 }
