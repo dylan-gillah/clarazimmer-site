@@ -3,21 +3,11 @@
   "heading": "Credits",
   "credits": [
     {
-      "year": "2025",
-      "title": "Rio & Kyo",
-      "type": "Experimental Film",
-      "role": "Director of Photography",
-      "badge": "DoP",
-      "director": "Tim Litwinschuh",
-      "producer": "Street Light Productions"
-    },
-    {
       "year": "2024",
       "title": "Schattenseite",
       "type": "TV Series — ARD/Degeto/funk/HR",
       "role": "Daily B-Cam Additional / A-Cam Replacement",
       "badge": "B-Cam / A-Cam",
-      "director": "",
       "producer": "Dreamtool Entertainment GmbH"
     },
     {
@@ -26,7 +16,6 @@
       "type": "TV Series — SRF/ZDF",
       "role": "2 DT B-Cam",
       "badge": "B-Cam",
-      "director": "",
       "producer": "Studio Zentral"
     },
     {
@@ -35,7 +24,6 @@
       "type": "TV Series — Hulu",
       "role": "Main Unit B-Cam (3 SD)",
       "badge": "B-Cam",
-      "director": "",
       "producer": "Blossom Films"
     },
     {
@@ -44,7 +32,6 @@
       "type": "Series",
       "role": "Director of Photography",
       "badge": "DoP",
-      "director": "",
       "producer": "Weibatz Productions"
     },
     {
@@ -53,17 +40,7 @@
       "type": "Daily Soap — SAT.1",
       "role": "Assistant Editor (Additional 3 months)",
       "badge": "Editor",
-      "director": "",
       "producer": "ndF neue deutsche Filmgesellschaft mbH"
-    },
-    {
-      "year": "2024",
-      "title": "Barrierefreiheit",
-      "type": "Short Film",
-      "role": "Director",
-      "badge": "Director",
-      "director": "",
-      "producer": "Vincent Netzer Produktion"
     },
     {
       "year": "2024",
@@ -71,8 +48,7 @@
       "type": "Short Film",
       "role": "1st Assistant Camera",
       "badge": "1st AC",
-      "director": "Moritz Geßner",
-      "producer": ""
+      "director": "Moritz Geßner"
     },
     {
       "year": "2024",
@@ -80,8 +56,7 @@
       "type": "Short Film",
       "role": "Camera Operator",
       "badge": "Camera Op.",
-      "director": "Omram Bhagchandani",
-      "producer": ""
+      "director": "Omram Bhagchandani"
     },
     {
       "year": "2024",
@@ -89,7 +64,6 @@
       "type": "Corporate Series",
       "role": "Camera Department",
       "badge": "Camera Dept.",
-      "director": "",
       "producer": "Highsnobiety / Titel Media GmbH"
     },
     {
@@ -107,8 +81,7 @@
       "type": "Commercial",
       "role": "Camera Operator",
       "badge": "Camera Op.",
-      "director": "Jannis Döring",
-      "producer": ""
+      "director": "Jannis Döring"
     },
     {
       "year": "2024",
@@ -116,8 +89,7 @@
       "type": "Corporate Film",
       "role": "Camera Operator",
       "badge": "Camera Op.",
-      "director": "Jannis Döring",
-      "producer": ""
+      "director": "Jannis Döring"
     },
     {
       "year": "2024",
@@ -125,7 +97,6 @@
       "type": "Commercial",
       "role": "Video Journalist",
       "badge": "Camera Dept.",
-      "director": "",
       "producer": "Apricot Berlin"
     },
     {
@@ -188,7 +159,6 @@
       "type": "TV Movie/Series — BR",
       "role": "A-Cam",
       "badge": "A-Cam",
-      "director": "",
       "producer": "Hager Moss Film GmbH"
     },
     {
@@ -224,8 +194,7 @@
       "type": "Short Film",
       "role": "1st Assistant Camera",
       "badge": "1st AC",
-      "director": "Carla Massolini",
-      "producer": ""
+      "director": "Carla Massolini"
     },
     {
       "year": "2023",
@@ -260,7 +229,6 @@
       "type": "Limited Series — Netflix",
       "role": "B-Cam",
       "badge": "B-Cam",
-      "director": "",
       "producer": "Bon Voyage Films GmbH"
     },
     {
@@ -323,8 +291,7 @@
       "type": "Short Film",
       "role": "Additional Editor",
       "badge": "Editor",
-      "director": "Jasper Graeve",
-      "producer": ""
+      "director": "Jasper Graeve"
     },
     {
       "year": "2020",
