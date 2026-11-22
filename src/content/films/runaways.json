@@ -22,11 +22,11 @@
     },
     {
       "label": "Runtime",
-      "value": "14 min"
+      "value": "5:22 min"
     },
     {
       "label": "Format",
-      "value": "24FPS · 2K Scope"
+      "value": "2K Scope · 24FPS"
     }
   ],
   "details": [
@@ -45,14 +45,6 @@
     {
       "label": "Shoot Days",
       "value": "72 hours"
-    },
-    {
-      "label": "Colour Grade",
-      "value": "DaVinci Resolve"
-    },
-    {
-      "label": "Aspect Ratio",
-      "value": "2K Scope"
     }
   ],
   "bts_photos": [
