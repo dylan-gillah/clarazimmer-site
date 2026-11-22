@@ -3,17 +3,14 @@
   "display_title": "The Tale of\na Boundless Heart",
   "year": "2023",
   "category": "Short Film",
-  "order": 7,
+  "order": 8,
   "show_on_work_page": true,
   "thumbnail": "/media/6bade2359_Screenshot2026-03-10at124817.png",
   "logline": "A story of longing, memory, and the quiet enormity of feeling.",
   "video_platform": "vimeo",
   "video_id": "939342913",
-  "video_private_code": "",
   "video_shape": "16:9",
   "video_params": "color=C9A96E&title=0&byline=0&portrait=0",
-  "hero_image": "",
-  "synopsis": "",
   "credits": [
     {
       "label": "Director",
@@ -43,8 +40,5 @@
       "label": "Year",
       "value": "2023"
     }
-  ],
-  "details": [],
-  "stills": [],
-  "bts_photos": []
+  ]
 }
