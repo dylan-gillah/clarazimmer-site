@@ -21,6 +21,10 @@
     {
       "label": "Format",
       "value": "HD 16:9"
+    },
+    {
+      "label": "Runtime",
+      "value": "30 seconds"
     }
   ],
   "details": [
