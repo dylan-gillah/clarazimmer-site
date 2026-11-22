@@ -7,5 +7,59 @@
   "thumbnail": "/media/mgb13.jpg",
   "logline": "When Elsie's grandson develops an allergy against gold, she decides to get rid of all the gold items in her house. But the cure is only short lived.",
   "video_platform": "none",
-  "video_shape": "16:9"
+  "video_shape": "16:9",
+  "hero_image": "/media/mgb13-1.jpg",
+  "synopsis": "When Elsie's grandson develops an allergy against gold, she decides to get rid of all the gold items in her house. But the cure is only short lived. A story about addiction and trying to help the people who you'll never stop caring for. ",
+  "credits": [
+    {
+      "label": "Director",
+      "value": "Tomsz Frymorgen"
+    },
+    {
+      "label": "Producer",
+      "value": "Melissa Dimonpulo"
+    },
+    {
+      "label": "Cinemtography",
+      "value": "Clara B. Zimmer"
+    },
+    {
+      "label": "Runtime",
+      "value": "3:45 min"
+    },
+    {
+      "label": "Format",
+      "value": "HD 16:9 · 25FPS"
+    }
+  ],
+  "details": [
+    {
+      "label": "Camera",
+      "value": "Aaton XTR"
+    },
+    {
+      "label": "Stock",
+      "value": "16mm 500T"
+    },
+    {
+      "label": "Lenses",
+      "value": "Zeiss High Speed"
+    },
+    {
+      "label": "Location",
+      "value": "Beaconsfield"
+    }
+  ],
+  "stills": [
+    "/media/mgb11.jpg",
+    "/media/mgb10.jpg",
+    "/media/mgb02.jpg",
+    "/media/mgb01.jpg",
+    "/media/mgb04.jpg",
+    "/media/mgb03.jpg",
+    "/media/mgb05.jpg",
+    "/media/mgb07.jpg",
+    "/media/mgb12.jpg",
+    "/media/mgb06.jpg"
+  ]
 }
