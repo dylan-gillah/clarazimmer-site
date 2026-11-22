@@ -1,0 +1,44 @@
+{
+  "title": "Starcar · Niklas Van Lipzig",
+  "year": "2024",
+  "category": "Commercial",
+  "order": 7,
+  "show_on_work_page": true,
+  "thumbnail": "/media/starcar01.jpg",
+  "video_platform": "none",
+  "video_id": "1166647539",
+  "video_private_code": "7cafdc7e8b",
+  "video_shape": "16:9",
+  "credits": [
+    {
+      "label": "Agency",
+      "value": "Doering Agency"
+    },
+    {
+      "label": "Director",
+      "value": "Jannis Döring"
+    },
+    {
+      "label": "Cinematography",
+      "value": "Robert Winter"
+    },
+    {
+      "label": "C Camera Operator",
+      "value": "Clara B. Zimmer"
+    }
+  ],
+  "details": [
+    {
+      "label": "Camera",
+      "value": "ARRI Alexa35"
+    },
+    {
+      "label": "Lenses",
+      "value": "Fujinon Alura 18-80"
+    },
+    {
+      "label": "Location",
+      "value": "Berlin"
+    }
+  ]
+}
