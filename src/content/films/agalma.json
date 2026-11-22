@@ -5,7 +5,6 @@
   "order": 9,
   "show_on_work_page": true,
   "thumbnail": "/media/52ca282be_Screenshot2026-03-11at140848.png",
-  "logline": "Shot on Blackmagic Pocket Cinema Camera 6K.",
   "video_platform": "vimeo",
   "video_id": "1172088348",
   "video_private_code": "b8e9f5c8e0",
@@ -13,20 +12,20 @@
   "video_params": "title=0&byline=0&portrait=0",
   "credits": [
     {
-      "label": "Location",
-      "value": "Berlin"
+      "label": "Director and Producer",
+      "value": "Julius S. Führ"
     },
     {
       "label": "Cinematographer",
       "value": "Clara B. Zimmer"
     },
     {
-      "label": "Producer",
-      "value": "Not listed"
+      "label": "Runtime",
+      "value": "4:19 min"
     },
     {
-      "label": "Writer",
-      "value": "Not listed"
+      "label": "Format",
+      "value": "HD 16:9 · 25FPS"
     }
   ],
   "details": [
@@ -35,16 +34,8 @@
       "value": "Blackmagic Pocket Cinema Camera 6K"
     },
     {
-      "label": "Format",
-      "value": "Not listed"
-    },
-    {
-      "label": "Runtime",
-      "value": "Not listed"
-    },
-    {
-      "label": "Year",
-      "value": "2023"
+      "label": "Location",
+      "value": "Berlin"
     }
   ]
 }
