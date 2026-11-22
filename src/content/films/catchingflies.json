@@ -1,0 +1,39 @@
+{
+  "title": "Catching Flies",
+  "year": "2025",
+  "category": "Stop Motion Animation Short Film",
+  "order": 6,
+  "show_on_work_page": true,
+  "thumbnail": "/media/still-2026-11-22-163014111.jpg",
+  "video_platform": "none",
+  "video_shape": "2.39:1",
+  "hero_image": "/media/still-2026-11-22-163014111-1.jpg",
+  "credits": [
+    {
+      "label": "Director",
+      "value": "Lucas Clayton"
+    },
+    {
+      "label": "Producer",
+      "value": "Melissa Dimonpulo"
+    },
+    {
+      "label": "Cinematography",
+      "value": "Clara B. Zimmer"
+    },
+    {
+      "label": "Runtime",
+      "value": "2:53 min"
+    },
+    {
+      "label": "Format",
+      "value": "2K Scope · 25FPS"
+    }
+  ],
+  "stills": [
+    "/media/still-2026-11-22-163014112.jpg",
+    "/media/still-2026-11-22-163014114.jpg",
+    "/media/still-2026-11-22-163014116.jpg",
+    "/media/still-2026-11-22-163014119.jpg"
+  ]
+}
