@@ -1,0 +1,46 @@
+{
+  "title": "Balance Me · Upside Down",
+  "year": "2026",
+  "category": "Commercial",
+  "order": 1,
+  "show_on_work_page": true,
+  "thumbnail": "/media/upsidedown08-2.jpg",
+  "video_platform": "vimeo",
+  "video_id": "1238354908",
+  "video_private_code": "fdb5f9d200",
+  "video_shape": "16:9",
+  "credits": [
+    {
+      "label": "Director",
+      "value": "Barbora Benkova"
+    },
+    {
+      "label": "Cinematography",
+      "value": "Clara B. Zimmer"
+    },
+    {
+      "label": "Format",
+      "value": "HD 16:9"
+    }
+  ],
+  "details": [
+    {
+      "label": "Camera",
+      "value": "ARRI Alexa Mini"
+    },
+    {
+      "label": "Lenses",
+      "value": "Cooke Panchro S4"
+    }
+  ],
+  "stills": [
+    "/media/upsidedown02-1.jpg",
+    "/media/upsidedown01-1.jpg",
+    "/media/upsidedown03-1.jpg",
+    "/media/upsidedown04-1.jpg",
+    "/media/upsidedown05-1.jpg",
+    "/media/upsidedown07-2.jpg",
+    "/media/upsidedown06-1.jpg",
+    "/media/upsidedown08-3.jpg"
+  ]
+}
