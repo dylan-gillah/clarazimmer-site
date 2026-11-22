@@ -1,0 +1,49 @@
+{
+  "title": "The Forgotten Corner",
+  "year": "2026",
+  "category": "Documentary Short Film · In Festival Circuit",
+  "order": 2,
+  "show_on_work_page": true,
+  "thumbnail": "/media/still-2026-11-22-160833114.jpg",
+  "video_platform": "none",
+  "video_shape": "16:9",
+  "hero_image": "/media/still-2026-11-22-160833114-1.jpg",
+  "synopsis": "In 2018 the maternity services in Stranraer closed. This is forcing women to go on a two hour journey on one of the most dangerous roads in Scotland to get to the hospital in Dumfries. This film shares the experiences of those women. ",
+  "credits": [
+    {
+      "label": "Director",
+      "value": "Clara Carbajo"
+    },
+    {
+      "label": "Producers",
+      "value": "Eve Grant and Karen Kelly"
+    },
+    {
+      "label": "Cinematography",
+      "value": "Clara B. Zimmer and Clara Carbajo"
+    },
+    {
+      "label": "Runtime",
+      "value": "16:48 min"
+    },
+    {
+      "label": "Format",
+      "value": "HD 16:9 · 25FPS"
+    }
+  ],
+  "details": [
+    {
+      "label": "Cameras",
+      "value": "Sony FX6, Sony Alpha 7 III, DJI Osmo Action 4"
+    },
+    {
+      "label": "Location",
+      "value": "Stranraer, Dumfries and Galloway"
+    }
+  ],
+  "stills": [
+    "/media/postertheforgottencorner-copy-2.jpeg",
+    "/media/still-2026-11-22-160833111.jpg",
+    "/media/still-2026-11-22-160833112.jpg"
+  ]
+}
