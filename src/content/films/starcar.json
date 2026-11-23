@@ -5,7 +5,7 @@
   "order": 8,
   "show_on_work_page": true,
   "thumbnail": "/media/starcar01.jpg",
-  "video_platform": "none",
+  "video_platform": "vimeo",
   "video_id": "1166647539",
   "video_private_code": "7cafdc7e8b",
   "video_shape": "16:9",
