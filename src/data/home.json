@@ -50,20 +50,16 @@
       "film": "src/content/films/afters.json"
     },
     {
-      "image": "/media/1871e86d2_unrequited_still_2.jpg",
+      "image": "/media/1d3933eb4_unrequited_still_4.jpg",
       "film": "src/content/films/unrequited.json"
     },
     {
-      "image": "/media/1d3933eb4_unrequited_still_4.jpg",
+      "image": "/media/be1ea7707_unrequited_still_1.jpg",
       "film": "src/content/films/unrequited.json"
     },
     {
       "image": "/media/ec3d0266f_ThreeOnAMatch_Still03_00092578Large.png",
       "film": "src/content/films/three-on-a-match.json"
-    },
-    {
-      "image": "/media/be1ea7707_unrequited_still_1.jpg",
-      "film": "src/content/films/unrequited.json"
     },
     {
       "image": "/media/0df58bf7f_ThreeOnAMatch_Still06_00109146Large.png",
@@ -72,6 +68,10 @@
     {
       "image": "/media/1c6848fae_ThreeOnAMatch_Still07_00114807Large.png",
       "film": "src/content/films/three-on-a-match.json"
+    },
+    {
+      "image": "/media/8d4f3d094_94047e3a-5d10-4a02-ba7b-097441817d8a.jpg",
+      "film": "src/content/films/agalma.json"
     },
     {
       "image": "/media/still-2026-11-22-163014111-2.jpg",
@@ -88,14 +88,6 @@
     {
       "image": "/media/d689af266_Untitled_111_1.jpg",
       "film": "src/content/films/boundless-heart.json"
-    },
-    {
-      "image": "/media/856cf5086_Still2026-03-14115523_118Large.png",
-      "film": "src/content/films/runaways.json"
-    },
-    {
-      "image": "/media/8d4f3d094_94047e3a-5d10-4a02-ba7b-097441817d8a.jpg",
-      "film": "src/content/films/agalma.json"
     }
   ],
   "about_heading": "From the edit\nto the lens",
